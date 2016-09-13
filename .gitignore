@@ -1,0 +1,10 @@
+/vendor
+/node_modules
+.env
+_ide_helper.php
+.phpstorm.meta.php
+/public/build
+/public/compiled
+/public/fonts
+.idea
+artisan.bat

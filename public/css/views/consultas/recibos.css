@@ -1,0 +1,69 @@
+#show-recibos table {
+    color: #000000;
+    border: 1px #000000;
+    width: 100%;
+    font-size: 14px;
+    border: 1px solid #000000;
+}
+
+#show-recibos td {
+    padding: 5px;
+}
+
+#show-recibos table td.descripcion {
+    background: #c0c0c0;
+    font-weight: bold;
+}
+
+#show-recibos table td.recibo-header {
+    background: #00acac;
+    font-weight: bold;
+}
+
+#show-recibos table td.sub-titulo {
+    font-weight: bold;
+    text-align: center;
+    background: #00acac;
+}
+
+#show-recibos table td.recibo-copyright {
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.dinero {
+    text-align: right;
+}
+
+.centrado {
+    text-align: center;
+}
+
+.negritas {
+    font-weight: bold;
+}
+
+.border-all {
+    border: 1px solid #000000;
+}
+
+.border-top {
+    border-top: 1px solid #000000;
+}
+
+.border-bottom {
+    border-bottom: 1px solid #000000;
+}
+
+.no-table-borders {
+    border: none !important;
+}
+
+.light-background {
+    background: #d3d3d3;
+}
+
+.sub-sub-titulo {
+    background: #ececec;
+    color: #00acac;
+}
