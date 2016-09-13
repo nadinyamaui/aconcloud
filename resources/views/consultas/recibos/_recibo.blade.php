@@ -143,15 +143,15 @@
                     </tr>
                     <tr>
                         <td>Gastos Comunes</td>
-                        <td class="dinero">{{\App\Helpers\Helper::tm($recibo->monto_comun)}}</td>
+                        <td class="dinero">{{\App\Helpers\Helper::tm($recibo->monto_comun_sin_fondos)}}</td>
+                    </tr>
+                    <tr>
+                        <td>Fondos</td>
+                        <td class="dinero">{{\App\Helpers\Helper::tm($recibo->monto_comun_de_fondos)}}</td>
                     </tr>
                     <tr>
                         <td>Ingresos</td>
                         <td class="dinero">{{\App\Helpers\Helper::tm($recibo->ingreso_comun)}}</td>
-                    </tr>
-                    <tr>
-                        <td>% Alícuota</td>
-                        <td class="dinero">{{\App\Helpers\Helper::tm($recibo->vivienda->tipoVivienda->porcentaje_pago)}}</td>
                     </tr>
                     <tr>
                         <td>Cuota parcial</td>

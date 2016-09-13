@@ -101,6 +101,20 @@ class Recibo extends BaseModel
         return $tipo->porcentaje_pago * $this->corteRecibo->monto_total / 100;
     }
 
+    public function getMontoComunSinFondosAttribute()
+    {
+        $tipo = $this->vivienda->tipoVivienda;
+
+        return $tipo->porcentaje_pago * $this->corteRecibo->monto_sin_fondos / 100;
+    }
+
+    public function getMontoComunDeFondosAttribute()
+    {
+        $tipo = $this->vivienda->tipoVivienda;
+
+        return $tipo->porcentaje_pago * $this->corteRecibo->total_fondos / 100;
+    }
+
     public function getIngresoComunAttribute()
     {
         $tipo = $this->vivienda->tipoVivienda;
