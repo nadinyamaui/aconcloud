@@ -185,7 +185,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="sub-titulo border-all" style="width: 75%;">Reservas</td>
+                        <td class="sub-titulo border-all" style="width: 75%;">Total Reservas</td>
                         <td class="sub-titulo border-all">Monto Bs</td>
                     </tr>
                     @foreach($corte->cuentas as $cuenta)
@@ -200,10 +200,6 @@
                             <td class="dinero">{{\App\Helpers\Helper::tm($fondo->pivot->saldo)}}</td>
                         </tr>
                     @endforeach
-                    <tr class="light-background">
-                        <td class="dinero negritas border-top border-bottom">Total Fondos</td>
-                        <td class="dinero negritas border-top border-bottom">{{\App\Helpers\Helper::tm($corte->fondos->sum('pivor->saldo'))}}</td>
-                    </tr>
                     <tr>
                         <td class="sub-titulo" colspan="2" style="text-align: left;">
                             Recuerde que:
