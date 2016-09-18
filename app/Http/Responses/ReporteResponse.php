@@ -8,54 +8,45 @@
 
 namespace App\Http\Responses;
 
+use Barryvdh\Snappy\PdfWrapper;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
-use mPDF;
 
 class ReporteResponse
 {
-
     public $excel;
+
+    /**
+     * @var PdfWrapper
+     */
     public $pdf;
 
     public function __construct(Application $app)
     {
         $this->excel = $app->make('excel');
+        $this->pdf = $app->make('snappy.pdf.wrapper');
     }
 
     public function create(Request $request, $vista, $data)
     {
         if ($request->get('formato') == "pdf") {
             return $this->generarPDF($vista, $data);
-        } else {
-            if ($request->get('formato') == "xls") {
-                return $this->generarExcel($vista, $data);
-            }
+        } elseif ($request->get('formato') == "xls") {
+            return $this->generarExcel($vista, $data);
         }
     }
 
-    private function generarPDF($vista, $data, $orientacion = 'P')
+    private function generarPDF($vista, $data, $orientacion = 'portrait', $options = [])
     {
         $html = view($vista, $data)->render();
-        $mpdf = new mPDF('',    // mode - default ''
-            'Letter',    // format - A4, for example, default ''
-            0,     // font size - default 0
-            '',    // default font family
-            15,    // margin_left
-            15,    // margin right
-            16,     // margin top
-            16,    // margin bottom
-            5,     // margin header
-            5,     // margin footer
-            $orientacion);
-        $mpdf->useOnlyCoreFonts = true;
-        $mpdf->SetTitle($data['nombre_reporte']);
-        $mpdf->SetAuthor('Aconcloud');
-        $mpdf->SetCreator('Aconcloud');
-        $mpdf->SetDisplayMode('fullpage');
-        $mpdf->WriteHTML($html);
-
-        return $mpdf->Output($data['nombre_reporte'].'.pdf', 'I');
+        $snappy = $this->pdf->loadHTML($html);
+        $snappy->setOrientation($orientacion);
+        $snappy->setPaper('letter');
+        $snappy->setOption('zoom', 1.15);
+        foreach ($options as $key => $option) {
+            $snappy->setOption($key, $option);
+        }
+        return $snappy->inline($data['nombre_reporte'].'.pdf');
     }
 
     private function generarExcel($vista, $data)

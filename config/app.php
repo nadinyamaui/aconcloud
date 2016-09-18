@@ -127,6 +127,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+
         /*
          * Application Service Providers...
          */
@@ -139,6 +140,7 @@ return [
         App\Providers\BackupServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Caffeinated\Modules\ModulesServiceProvider::class,
+        Barryvdh\Snappy\ServiceProvider::class,
     ],
     /*
     |--------------------------------------------------------------------------
@@ -189,5 +191,7 @@ return [
         'HTML'      => Collective\Html\HtmlFacade::class,
         'Module'    => Caffeinated\Modules\Facades\Module::class,
         'Gate'      => Illuminate\Support\Facades\Gate::class,
+        'PDFSnappy' => Barryvdh\Snappy\Facades\SnappyPdf::class,
+        'SnappyImage' => Barryvdh\Snappy\Facades\SnappyImage::class,
     ],
 ];

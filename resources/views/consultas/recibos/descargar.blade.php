@@ -1,10 +1,8 @@
 @extends('layouts.'.$formato)
-@section('titulo')
-    <p style="text-align: center;">
-        Aviso de Cobro
-    </p>
-@endsection
 @section('reporte')
+    <h3 style="text-align: center;">
+        Aviso de Cobro
+    </h3>
     @include('consultas.recibos._recibo')
 @endsection
 @section('css')
