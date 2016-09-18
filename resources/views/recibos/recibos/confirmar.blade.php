@@ -25,8 +25,8 @@
                     </div>
                     <fieldset>
                         <legend>Recibos generados</legend>
-                        {!!HTML::customTable($recibos,'App\Models\Inquilino\Recibo', $columnas)!!}
-                        {!!Form::open(['url'=>'recibos/recibos/confirmar'])!!}
+                        {!!HTML::customTable($recibos, \App\Models\Inquilino\Recibo::class, $columnas)!!}
+                        {!!Form::open(['url' => 'recibos/recibos/confirmar'])!!}
                         {!!Form::hidden('id', $corte->id)!!}
                         <div class="row">
                             <div class="col-lg-12">

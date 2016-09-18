@@ -1,4 +1,6 @@
-<?php namespace App\Jobs;
+<?php
+
+namespace App\Jobs;
 
 use App\Helpers\Helper;
 use App\Models\App\Inquilino;
@@ -11,7 +13,6 @@ use Illuminate\Queue\SerializesModels;
 
 class ReciboRegistrado extends Job implements ShouldQueue
 {
-
     use InteractsWithQueue, SerializesModels;
 
     protected $recibo;

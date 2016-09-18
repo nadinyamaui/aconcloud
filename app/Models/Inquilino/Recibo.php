@@ -52,6 +52,7 @@ class Recibo extends BaseModel
     public static $decimalFields = [
         'monto_no_comun',
         'deuda_anterior',
+        'deuda_posterior',
         'porcentaje_mora',
         'monto_mora',
         'monto_comun',
@@ -147,6 +148,11 @@ class Recibo extends BaseModel
     public function getSaldoAFavorAttribute()
     {
         return $this->deuda_anterior < 0 ? $this->deuda_anterior : 0;
+    }
+
+    public function getDeudaPosteriorAttribute()
+    {
+        return $this->deuda_anterior + $this->monto_total;
     }
 
     public function vivienda()
@@ -285,6 +291,7 @@ class Recibo extends BaseModel
             'monto_no_comun' => 'Gastos no comunes',
             'monto_comun' => 'Gastos comunes',
             'deuda_anterior' => 'Deuda anterior',
+            'deuda_posterior' => 'Deuda posterior',
             'porcentaje_mora' => '% de mora',
             'monto_mora' => 'Monto por mora',
             'monto_total' => 'Monto total del recibo',

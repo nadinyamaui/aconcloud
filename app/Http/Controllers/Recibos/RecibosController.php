@@ -26,6 +26,7 @@ class RecibosController extends Controller
             'monto_comun',
             'monto_no_comun',
             'deuda_anterior',
+            'deuda_posterior',
             'porcentaje_mora',
             'monto_mora',
             'monto_total',

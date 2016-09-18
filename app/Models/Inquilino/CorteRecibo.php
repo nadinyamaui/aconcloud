@@ -146,6 +146,12 @@ class CorteRecibo extends BaseModel
         $corte->fecha_vencimiento = Carbon::createFromDate($ano, $mes,
             Preferencia::buscar('dia_corte_recibo'))->addMonth()->lastOfMonth();
 
+        if (is_null($corte->ingresos)){
+            $corte->ingresos = 0;
+        }
+        if (is_null($corte->gastos_no_comunes)){
+            $corte->gastos_no_comunes = 0;
+        }
         return $corte;
     }
 
