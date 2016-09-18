@@ -42,7 +42,11 @@ class ReporteResponse
         $snappy = $this->pdf->loadHTML($html);
         $snappy->setOrientation($orientacion);
         $snappy->setPaper('letter');
-        $snappy->setOption('dpi', 125);
+        if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
+            $snappy->setOption('zoom', 1.15);
+        } else {
+            $snappy->setOption('zoom', 0.8);
+        }
         foreach ($options as $key => $option) {
             $snappy->setOption($key, $option);
         }
