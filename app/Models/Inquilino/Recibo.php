@@ -227,14 +227,16 @@ class Recibo extends BaseModel
             $pago->monto_marcado = $pago->recibos->sum('monto_total');
             $pago->save();
         }
-        $this->pagado();
+        $this->pagado(true);
     }
 
-    public function pagado()
+    public function pagado($pago_automatico = false)
     {
         $this->agregarDineroAlFondo();
         $this->estatus = "PAG";
-        $this->vivienda->saldo_actual -= $this->monto_total;
+        if (!$pago_automatico){
+            $this->vivienda->saldo_actual -= $this->monto_total;
+        }
         $this->push();
     }
 
