@@ -42,6 +42,7 @@ class ReporteResponse
         $snappy = $this->pdf->loadHTML($html);
         $snappy->setOrientation($orientacion);
         $snappy->setPaper('letter');
+        $snappy->setOption('dpi', 125);
         foreach ($options as $key => $option) {
             $snappy->setOption($key, $option);
         }
