@@ -18,6 +18,11 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
  * Si se quiere validación especial se debe sobreescribir el metodo Validate.
  * Por defecto el metodo validate es ejecutado con el evento save();
  *
+ * @method static static find($id)
+ * @method static static findMany($id)
+ * @method static static findOrFail($id)
+ * @method static static firstOrNew(array $array)
+ *
  * @author Nadin Yamaui
  */
 abstract class BaseModel extends Model
