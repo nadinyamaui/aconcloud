@@ -45,7 +45,7 @@ class ReporteResponse
         if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
             $snappy->setOption('zoom', 1.15);
         } else {
-            $snappy->setOption('zoom', 0.6);
+            $snappy->setOption('zoom', 0.75);
         }
         foreach ($options as $key => $option) {
             $snappy->setOption($key, $option);
