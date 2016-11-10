@@ -40,11 +40,12 @@ class VotacionesController extends Controller
         $data['viviendas'] = Vivienda::wherePropietarioId(auth()->id())->get();
         $data['usuario'] = auth()->user();
         $data['voto'] = Votacion::whereIn('vivienda_id', $data['viviendas']->lists('id')->all())
+            ->whereUserId(auth()->id())
             ->wherePropuestaId($propuesta_id)
             ->whereIndCerrado(false)
             ->first();
 
-        if(!is_object($data['voto'])){
+        if (!is_object($data['voto'])){
             return redirect('modulos/propuestas/propuestas/'.$propuesta_id.'/votaciones')->with('mensaje', 'Ya votaste para esta propuesta, espera que el administrador cierre el proceso de votaci&oacute;n');
         }
         session()->set('voto_activo_id', $data['voto']->id);
