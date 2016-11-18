@@ -230,7 +230,7 @@ class Recibo extends BaseModel
         $pago = Pago::whereViviendaId($this->vivienda_id)->whereEstatus("PRO")->orderBy('id', 'desc')->first();
         if (is_object($pago)) {
             $pago->recibos()->save($this);
-            $pago->monto_marcado = $pago->recibos->sum('monto_total');
+            $pago->total_relacion = $pago->recibos->sum('monto_total');
             $pago->save();
         }
         $this->pagado(true);
