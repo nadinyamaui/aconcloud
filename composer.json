@@ -15,7 +15,7 @@
     "league/flysystem-dropbox": "~1.0",
     "spatie/laravel-backup": "^2.5",
     "caffeinated/modules": "^2.1",
-    "guzzlehttp/guzzle": "~5.3|~6.0",
+    "guzzlehttp/guzzle": "~6.0",
     "sentry/sentry-laravel": "^0.3.0",
     "barryvdh/laravel-snappy": "^0.3.1"
   },

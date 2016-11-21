@@ -51,7 +51,7 @@ return [
     |
     */
 
-    'from'       => ['address' => 'postmaster@aconcloud.com.ve', 'name' => 'Aconcloud'],
+    'from' => ['address' => 'no-reply@aconcloud.com.ve', 'name' => 'Aconcloud'],
     /*
     |--------------------------------------------------------------------------
     | E-Mail Encryption Protocol
