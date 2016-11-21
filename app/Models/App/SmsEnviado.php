@@ -55,7 +55,7 @@ class SmsEnviado extends BaseModel
 
     public static function encolar($mensaje, User $destinatario)
     {
-        if($destinatario->telefono_celular != ""){
+        if ($destinatario->telefono_celular != "") {
             SmsEnviado::create([
                 'mensaje'         => $mensaje,
                 'destinatario_id' => $destinatario->id,

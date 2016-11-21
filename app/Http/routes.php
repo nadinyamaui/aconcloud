@@ -1,13 +1,5 @@
 <?php
 
-Route::group(['prefix' => 'api'], function ($router) {
-    $router->group(['prefix' => 'sms'], function ($router) {
-        $router->get('pendientes', 'SmsController@pendientes');
-        $router->get('enviado/{id}', 'SmsController@enviado');
-        $router->get('error/{id}', 'SmsController@error');
-    });
-});
-
 Route::controllers([
     'auth'     => 'Auth\AuthController',
     'password' => 'Auth\PasswordController',
