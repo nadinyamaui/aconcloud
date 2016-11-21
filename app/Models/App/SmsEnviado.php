@@ -1,6 +1,8 @@
 <?php namespace App\Models\App;
 
+use App\Jobs\SendSmsToCentauro;
 use App\Models\BaseModel;
+use Illuminate\Foundation\Bus\DispatchesJobs;
 
 /**
  * App\Models\App\SmsEnviado
@@ -32,6 +34,7 @@ use App\Models\BaseModel;
  */
 class SmsEnviado extends BaseModel
 {
+    use DispatchesJobs;
 
     protected $table = "sms_enviados";
     protected $connection = "app";
@@ -56,11 +59,13 @@ class SmsEnviado extends BaseModel
     public static function encolar($mensaje, User $destinatario)
     {
         if ($destinatario->telefono_celular != "") {
-            SmsEnviado::create([
+            $sms = SmsEnviado::create([
                 'mensaje'         => $mensaje,
                 'destinatario_id' => $destinatario->id,
                 'inquilino_id'    => Inquilino::$current->id,
             ]);
+
+            $sms->dispatch(new SendSmsToCentauro($sms));
         }
     }
 
