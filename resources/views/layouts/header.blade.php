@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <!-- begin mobile sidebar expand / collapse button -->
         <div class="navbar-header">
-            <a href="{{url('')}}" class="navbar-brand">
+            <a href="{{url('')}}">
                 <img src="{{ url('build/images/logo.png') }}">
             </a>
             <button type="button" class="navbar-toggle" data-click="sidebar-toggled">
