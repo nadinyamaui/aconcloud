@@ -39,18 +39,22 @@ class SendSmsToCentauro extends Job implements ShouldQueue
     {
         $client = new Client([
             // Base URI is used with relative requests
-            'base_uri' => 'http://api.centaurosms.com.ve',
-            'headers' => [
-                'Accept' => 'application/json',
-                'Content-Type' => 'application/x-www-form-urlencoded',
+            'base_url' => 'http://api.centaurosms.com.ve',
+            'defaults' => [
+                'headers' => [
+                    'Accept' => 'application/json',
+                    'Content-Type' => 'application/x-www-form-urlencoded',
+                ],
             ],
         ]);
 
+        $this->sms->ind_reservado = true;
+        $this->sms->save();
+
         $message = [];
         try {
-            $message = $client->request('POST', 'controllersms/', [
+            $message = $client->post('controllersms/', [
                 'body' => $this->prepareBasicData($this->sms->destinatario->telefono_celular, $this->sms->mensaje),
-                'connect_timeout' => 30
             ])->json();
         } catch (ServerException $e) {
             $this->sms->error = $e->getMessage();
