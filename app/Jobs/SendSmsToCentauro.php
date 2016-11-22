@@ -47,27 +47,25 @@ class SendSmsToCentauro extends Job implements ShouldQueue
             'timeout' => 60.0,
         ]);
 
-        $texts = str_split($this->sms->mensaje, 160);
-        foreach ($texts as $text) {
-            $message = [];
-            try {
-                $message = $client->request('POST', 'controllersms/', [
-                    'body' => $this->prepareBasicData($this->sms->destinatario->telefono_celular, $text)
-                ])->json();
-            } catch (ServerException $e) {
-                $this->sms->error = $e->getMessage();
-            } catch (ParseException $e) {
-                $this->sms->error = $e->getMessage();
-            }
-
-            if (array_get($message, 'status') == '200') {
-                $this->sms->error = "Enviado";
-            } else if (isset($message['status'])) {
-                $this->sms->error = $message['status'];
-            }
-            $this->sms->ind_enviado = true;
-            $this->sms->save();
+        $message = [];
+        try {
+            $message = $client->request('POST', 'controllersms/', [
+                'body' => $this->prepareBasicData($this->sms->destinatario->telefono_celular, $this->sms->mensaje)
+            ])->json();
+        } catch (ServerException $e) {
+            $this->sms->error = $e->getMessage();
+        } catch (ParseException $e) {
+            $this->sms->error = $e->getMessage();
         }
+
+        if (array_get($message, 'status') == '200') {
+            $this->sms->error = "Enviado";
+        } else if (isset($message['status'])) {
+            $this->sms->error = $message['status'];
+        }
+
+        $this->sms->ind_enviado = true;
+        $this->sms->save();
     }
 
     protected function prepareBasicData($destination, $msg, $option = 'send_sms')
