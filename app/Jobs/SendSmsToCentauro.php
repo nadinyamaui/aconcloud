@@ -44,13 +44,13 @@ class SendSmsToCentauro extends Job implements ShouldQueue
                 'Accept' => 'application/json',
                 'Content-Type' => 'application/x-www-form-urlencoded',
             ],
-            'timeout' => 60.0,
         ]);
 
         $message = [];
         try {
             $message = $client->request('POST', 'controllersms/', [
-                'body' => $this->prepareBasicData($this->sms->destinatario->telefono_celular, $this->sms->mensaje)
+                'body' => $this->prepareBasicData($this->sms->destinatario->telefono_celular, $this->sms->mensaje),
+                'connect_timeout' => 30
             ])->json();
         } catch (ServerException $e) {
             $this->sms->error = $e->getMessage();
