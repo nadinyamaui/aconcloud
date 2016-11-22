@@ -44,7 +44,7 @@ class SendSmsToCentauro extends Job implements ShouldQueue
                 'Accept' => 'application/json',
                 'Content-Type' => 'application/x-www-form-urlencoded',
             ],
-            'timeout' => 2.0,
+            'timeout' => 60.0,
         ]);
 
         $texts = str_split($this->sms->mensaje, 160);
