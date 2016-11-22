@@ -60,9 +60,9 @@ class SendSmsToCentauro extends Job implements ShouldQueue
                 $this->sms->error = $e->getMessage();
             }
 
-            if ($message['status'] == '200') {
+            if (array_get($message, 'status') == '200') {
                 $this->sms->error = "Enviado";
-            } else {
+            } else if (isset($message['status'])) {
                 $this->sms->error = $message['status'];
             }
             $this->sms->ind_enviado = true;
