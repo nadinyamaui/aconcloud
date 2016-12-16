@@ -48,7 +48,6 @@ class SendSmsToCentauro extends Job implements ShouldQueue
             ],
         ]);
 
-        $this->sms->ind_reservado = true;
         $this->sms->save();
 
         $message = [];
@@ -57,19 +56,18 @@ class SendSmsToCentauro extends Job implements ShouldQueue
                 'body' => $this->prepareBasicData($this->sms->destinatario->telefono_celular, $this->sms->mensaje),
             ])->json();
         } catch (ServerException $e) {
-            $this->sms->error = $e->getMessage();
+            $this->sms->error($e->getMessage());
         } catch (ParseException $e) {
-            $this->sms->error = $e->getMessage();
+            $this->sms->error($e->getMessage());
         }
 
         if (array_get($message, 'status') == '200') {
-            $this->sms->error = "Enviado";
+            $this->sms->enviado();
         } else if (isset($message['status'])) {
-            $this->sms->error = $message['status'];
+            $this->sms->error($message['status']);
+        } else {
+            $this->sms->error("Error desconocido");
         }
-
-        $this->sms->ind_enviado = true;
-        $this->sms->save();
     }
 
     protected function prepareBasicData($destination, $msg, $option = 'send_sms')

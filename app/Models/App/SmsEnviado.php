@@ -15,7 +15,6 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
  * @property string $error
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
- * @property boolean $ind_reservado
  * @property-read Inquilino $inquilino
  * @property-read User $destinatario
  * @property-read mixed $estatus_display
@@ -49,12 +48,10 @@ class SmsEnviado extends BaseModel
         'mensaje'
     ];
 
-    public function __construct(array $attributes = [])
-    {
-        parent::__construct($attributes);
-        $this->ind_enviado = false;
-        $this->ind_reservado = false;
-    }
+    protected $attributes = [
+        'ind_enviado' => false,
+        'ind_fallido' => false,
+    ];
 
     public static function encolar($mensaje, User $destinatario)
     {
@@ -79,12 +76,6 @@ class SmsEnviado extends BaseModel
         return $this->belongsTo(User::class, 'destinatario_id');
     }
 
-    public function reservar()
-    {
-        $this->ind_reservado = true;
-        $this->save();
-    }
-
     public function enviado()
     {
         $this->ind_enviado = true;
@@ -93,6 +84,7 @@ class SmsEnviado extends BaseModel
 
     public function error($error)
     {
+        $this->ind_fallido = true;
         $this->ind_enviado = true;
         $this->error = $error;
         $this->save();

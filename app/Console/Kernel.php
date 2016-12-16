@@ -2,13 +2,14 @@
 
 namespace App\Console;
 
-use Illuminate\Console\Scheduling\Schedule;
-use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
-use Carbon\Carbon;
-use App\Console\Commands\VerificarRecibosVencidos;
-use App\Console\Commands\GenerarMovimientosCuentaAutomaticos;
 use App\Console\Commands\AppMigrate;
 use App\Console\Commands\DatesUpgrade;
+use App\Console\Commands\GenerarMovimientosCuentaAutomaticos;
+use App\Console\Commands\RetryFailedSMS;
+use App\Console\Commands\VerificarRecibosVencidos;
+use Carbon\Carbon;
+use Illuminate\Console\Scheduling\Schedule;
+use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
 class Kernel extends ConsoleKernel
 {
@@ -23,6 +24,7 @@ class Kernel extends ConsoleKernel
         GenerarMovimientosCuentaAutomaticos::class,
         AppMigrate::class,
         DatesUpgrade::class,
+        RetryFailedSMS::class,
     ];
 
     /**
