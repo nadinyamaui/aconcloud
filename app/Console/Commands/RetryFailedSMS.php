@@ -29,6 +29,7 @@ class RetryFailedSMS extends Command
     {
         $failed = SmsEnviado::whereIndFallido(true)->get();
         $failed->each(function (SmsEnviado $smsEnviado) {
+            $this->info("Sending SMS #" . $smsEnviado->id);
             $this->dispatch(new SendSmsToCentauro($smsEnviado));
         });
     }

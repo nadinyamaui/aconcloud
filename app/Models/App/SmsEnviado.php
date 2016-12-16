@@ -78,7 +78,9 @@ class SmsEnviado extends BaseModel
 
     public function enviado()
     {
+        $this->ind_fallido = false;
         $this->ind_enviado = true;
+        $this->error = null;
         $this->save();
     }
 
