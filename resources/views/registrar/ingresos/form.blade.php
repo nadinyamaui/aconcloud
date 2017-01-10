@@ -28,6 +28,7 @@
             <div class="row">
                 {!!Form::simple('ind_movimiento_en_cuotas', 2)!!}
                 <div id="movimiento-en-cuotas">
+                    {!!Form::simple('porcentaje_cuotas',4)!!}
                     {!!Form::simple('total_cuotas', 4)!!}
                 </div>
             </div>

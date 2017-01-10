@@ -33,6 +33,7 @@ class CreateMovimientosCuentaTable extends Migration
             $table->boolean('ind_movimiento_en_cuotas')->default(0);
             $table->integer('cuota_numero')->nullable();
             $table->integer('total_cuotas')->nullable();
+            $table->decimal('porcentaje_cuotas', 5, 2)->nullable();
             $table->decimal('monto_inicial', 65, 2)->nullable();
             $table->unsignedInteger('movimiento_cuenta_cuota_id')->nullable();
             $table->enum('estatus', ['PEN', 'PRO']);
