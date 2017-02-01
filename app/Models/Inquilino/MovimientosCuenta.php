@@ -126,20 +126,18 @@ class MovimientosCuenta extends BaseModel
 
     /**
      * Define una relación pertenece a Cuenta
-     * @return Cuenta
      */
     public function cuenta()
     {
-        return $this->belongsTo('App\Models\Inquilino\Cuenta');
+        return $this->belongsTo(Cuenta::class);
     }
 
     /**
      * Define una relación pertenece a Clasificacion
-     * @return Clasificacion
      */
     public function clasificacion()
     {
-        return $this->belongsTo('App\Models\Inquilino\ClasificacionIngresoEgreso');
+        return $this->belongsTo(ClasificacionIngresoEgreso::class);
     }
 
     /**
@@ -148,22 +146,22 @@ class MovimientosCuenta extends BaseModel
      */
     public function fondo()
     {
-        return $this->belongsTo('App\Models\Inquilino\Fondo');
+        return $this->belongsTo(Fondo::class);
     }
 
     public function movimientoPadre()
     {
-        return $this->belongsTo('App\Models\Inquilino\MovimientosCuenta', 'movimiento_cuenta_cuota_id');
+        return $this->belongsTo(MovimientosCuenta::class, 'movimiento_cuenta_cuota_id');
     }
 
     public function pago()
     {
-        return $this->hasOne('App\Models\Inquilino\Pago', 'movimiento_cuenta_id');
+        return $this->hasOne(Pago::class, 'movimiento_cuenta_id');
     }
 
     public function movimientoCuotas()
     {
-        return $this->hasMany('App\Models\Inquilino\MovimientosCuenta', 'movimiento_cuenta_cuota_id');
+        return $this->hasMany(MovimientosCuenta::class, 'movimiento_cuenta_cuota_id');
     }
 
     public function comentarios()
@@ -393,7 +391,7 @@ class MovimientosCuenta extends BaseModel
         if ($this->ind_movimiento_en_cuotas) {
             $this->monto_inicial = $this->monto;
             $this->cuota_numero = 1;
-            $montoCuotas = $this->monto * ($this->porcentaje_cuotas/100);
+            $montoCuotas = $this->monto * ($this->porcentaje_cuotas / 100);
             $this->asignarMonto($montoCuotas / $this->total_cuotas);
         }
     }
@@ -416,7 +414,7 @@ class MovimientosCuenta extends BaseModel
 
     private function registrarCuotas()
     {
-        $montoMovimientoBase=$this->monto_inicial;
+        $montoMovimientoBase = $this->monto_inicial;
 
         if ($this->total_cuotas >= 2) {
             for ($i = 2; $i <= $this->total_cuotas; $i++) {
@@ -432,23 +430,18 @@ class MovimientosCuenta extends BaseModel
                 }
             }
 
-            $montoMovimientoBase*=(100-$this->porcentaje_cuotas)/100;
-        }
+            $montoMovimientoBase *= (100 - $this->porcentaje_cuotas)/100;
 
-        if ($this->porcentaje_cuotas!=100) {
-            $movimientoBase = new MovimientosCuenta($this->toArray());
-            $movimientoBase->movimiento_cuenta_cuota_id = $this->id;
-            $movimientoBase->fecha_factura=$this->fecha_factura;
-            $movimientoBase->asignarMonto($montoMovimientoBase);
-        
-            $movimientoBase->save();
-            if ($movimientoBase->hasErrors()) {
-                dd($movimientoBase->getErrors());
+            if ($this->porcentaje_cuotas != 100) {
+                /** @var MovimientosCuenta $movimientoBase */
+                $movimientoBase = $this->replicate();
+                $movimientoBase->fill($this->toArray());
+                $movimientoBase->movimiento_cuenta_cuota_id = $this->id;
+                $movimientoBase->fecha_factura = $this->fecha_factura;
+                $movimientoBase->asignarMonto($montoMovimientoBase);
+                $movimientoBase->save();
             }
         }
-
-
-
     }
 
     public function asociarViviendas(array $viviendas)

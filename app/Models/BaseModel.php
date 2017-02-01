@@ -441,7 +441,6 @@ abstract class BaseModel extends Model
         ];
         $validator = Validator::make($data, $rule);
         if ($validator->fails()) {
-            dd($validator->messages(), $file);
             $this->appendErrors($validator->messages());
 
             return false;
