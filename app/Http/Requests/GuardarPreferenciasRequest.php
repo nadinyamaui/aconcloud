@@ -1,6 +1,7 @@
 <?php namespace App\Http\Requests;
+use Illuminate\Foundation\Http\FormRequest;
 
-class GuardarPreferenciasRequest extends Request
+class GuardarPreferenciasRequest extends FormRequest
 {
 
     /**

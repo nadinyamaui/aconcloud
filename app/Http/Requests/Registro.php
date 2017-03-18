@@ -1,6 +1,7 @@
 <?php namespace App\Http\Requests;
+use Illuminate\Foundation\Http\FormRequest;
 
-class Registro extends Request
+class Registro extends FormRequest
 {
 
     /**

@@ -2,9 +2,10 @@
 
 namespace App\Modules\Mensajeria\Http\Requests;
 
+use Illuminate\Foundation\Http\FormRequest;
 use App\Http\Requests\Request;
 
-class EnviarMensajeRequest extends Request
+class EnviarMensajeRequest extends FormRequest
 {
 
     /**
