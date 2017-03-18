@@ -47,11 +47,9 @@ class AsambleaCreada extends Job implements ShouldQueue
         $data['asunto'] = "Nueva asamblea en ".$this->inquilino->nombre;
         $data['propuestas'] = $asamblea->propuestas;
         $usuarios = Inquilino::$current->usuarios;
-        foreach($usuarios as $usuario)
-        {
+        foreach ($usuarios as $usuario) {
             $data['destinatario'] = $usuario->nombre_completo;
             $usuario->enviarCorreo('asambleas::emails.asambleas.creada', $data, $data['asunto']);
         }
     }
-
 }

@@ -29,5 +29,4 @@ class UsuarioRegistrado extends Job implements ShouldQueue
         $data['host'] = $this->host;
         $data['usuario']->enviarCorreo('emails.usuarios.created', $data, '¡Bienvenido a aconcloud!');
     }
-
 }

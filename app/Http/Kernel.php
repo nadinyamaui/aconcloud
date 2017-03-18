@@ -52,5 +52,4 @@ class Kernel extends HttpKernel
         'permisos.junta'        => Junta::class,
         'permisos.propietario'  => Propietario::class,
     ];
-
 }

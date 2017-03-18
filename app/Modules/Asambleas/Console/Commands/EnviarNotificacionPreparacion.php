@@ -42,10 +42,8 @@ class EnviarNotificacionPreparacion extends Command
     public function handle()
     {
         $inquilinos = Inquilino::all();
-        foreach($inquilinos as $inquilino)
-        {
-            if($inquilino->tieneModulo('asambleas'))
-            {
+        foreach ($inquilinos as $inquilino) {
+            if ($inquilino->tieneModulo('asambleas')) {
                 $this->info('Activando inquilino: '.$inquilino->nombre);
                 //Activamos el inquilino
                 Inquilino::setActivo($inquilino->host);
@@ -54,16 +52,13 @@ class EnviarNotificacionPreparacion extends Command
                 //Se buscan las asambleas del dia de hoy
                 $asambleas = Asamblea::whereIndNotificacionPreparacion(false)->whereFecha($hoy->format('Y-m-d'))->whereEstatus("pendiente")->get();
                 $usuarios = Inquilino::$current->usuarios;
-                foreach ($asambleas as $asamblea)
-                {
+                foreach ($asambleas as $asamblea) {
                     $fechaInicio = $asamblea->getFechaInicio();
 
                     //Si la asamblea comienza en 30 minutos o menos enviemos un correo
-                    if($fechaInicio->diffInMinutes($hoy, true) <= 30){
-
+                    if ($fechaInicio->diffInMinutes($hoy, true) <= 30) {
                         $this->info('Notificando asamblea: '.$asamblea->titulo);
-                        foreach($usuarios as $usuario)
-                        {
+                        foreach ($usuarios as $usuario) {
                             $data['id'] = $asamblea->id;
                             $data['destinatario'] = $usuario->nombre_completo;
                             $data['titulo'] = $asamblea->titulo;
@@ -72,10 +67,10 @@ class EnviarNotificacionPreparacion extends Command
                             $data['es_autor'] = $usuario->id == $asamblea->autor_id;
                             $data['esta_retrasada'] = !$asamblea->sePuedeComenzar();
                             //Se le envia un mensaje de texto al autor de la propuesta
-                            if($data['es_autor']){
-                                if($asamblea->sePuedeComenzar()){
+                            if ($data['es_autor']) {
+                                if ($asamblea->sePuedeComenzar()) {
                                     SmsEnviado::encolar('Eres el moderador de una asamblea que comenzará en 30 minutos, ya todo esta configurado y listo para empezar', $usuario);
-                                }else{
+                                } else {
                                     SmsEnviado::encolar('Eres el moderador de una asamblea que inicia en 30 minutos. Debes crear el evento en youtube y colocar el link en aconcloud, sin esto la misma no podrá iniciar', $usuario);
                                 }
                             }

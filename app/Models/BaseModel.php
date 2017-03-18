@@ -227,13 +227,12 @@ abstract class BaseModel extends Model
         return false;
     }
 
-    protected abstract function getRules();
+    abstract protected function getRules();
 
-    protected abstract function getPrettyFields();
+    abstract protected function getPrettyFields();
 
     protected function afterValidate()
     {
-
     }
 
     protected function appendErrors($messages)
@@ -449,5 +448,5 @@ abstract class BaseModel extends Model
         return true;
     }
 
-    public abstract function getPrettyName();
+    abstract public function getPrettyName();
 }

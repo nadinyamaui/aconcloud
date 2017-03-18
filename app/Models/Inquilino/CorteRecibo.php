@@ -143,13 +143,16 @@ class CorteRecibo extends BaseModel
         }
         $corte->total_cuentas = Cuenta::activas()->get()->sum('saldo_con_fondos');
         $corte->estatus = "ELA";
-        $corte->fecha_vencimiento = Carbon::createFromDate($ano, $mes,
-            Preferencia::buscar('dia_corte_recibo'))->addMonth()->lastOfMonth();
+        $corte->fecha_vencimiento = Carbon::createFromDate(
+            $ano,
+            $mes,
+            Preferencia::buscar('dia_corte_recibo')
+        )->addMonth()->lastOfMonth();
 
-        if (is_null($corte->ingresos)){
+        if (is_null($corte->ingresos)) {
             $corte->ingresos = 0;
         }
-        if (is_null($corte->gastos_no_comunes)){
+        if (is_null($corte->gastos_no_comunes)) {
             $corte->gastos_no_comunes = 0;
         }
         return $corte;
@@ -216,8 +219,11 @@ class CorteRecibo extends BaseModel
 
     public function movimientosConciliados()
     {
-        $movimientosNoConciliados = MovimientosCuenta::whereMonthYear('fecha_factura', $this->mes,
-            $this->ano)->whereEstatus('PEN')->count();
+        $movimientosNoConciliados = MovimientosCuenta::whereMonthYear(
+            'fecha_factura',
+            $this->mes,
+            $this->ano
+        )->whereEstatus('PEN')->count();
         if ($movimientosNoConciliados > 0) {
             return false;
         }

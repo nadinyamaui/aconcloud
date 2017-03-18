@@ -37,5 +37,4 @@ class CreateCorteReciboTable extends Migration
     {
         Schema::drop('corte_recibos');
     }
-
 }

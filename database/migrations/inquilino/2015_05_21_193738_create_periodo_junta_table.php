@@ -30,5 +30,4 @@ class CreatePeriodoJuntaTable extends Migration
     {
         Schema::drop('periodo_junta');
     }
-
 }

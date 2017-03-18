@@ -36,7 +36,7 @@ class PagosController extends Controller
         ]);
         $data['vivienda'] = new Vivienda();
 
-        if (!User::esJunta(true)){
+        if (!User::esJunta(true)) {
             $data['viviendas'] = auth()->user()->viviendasPropietario->lists('nombre', 'id')->all();
         }
         return view('recibos.pagos.create', $data);
@@ -46,8 +46,10 @@ class PagosController extends Controller
     {
         $data['pago'] = Pago::findOrFail($id);
         if (!$data['pago']->puedeEditar()) {
-            return redirect("consultas/pagos")->with(['error' => 'No se puede modificar este pago, debido a que ya esta procesado'],
-                400);
+            return redirect("consultas/pagos")->with(
+                ['error' => 'No se puede modificar este pago, debido a que ya esta procesado'],
+                400
+            );
         }
         $data['recibos'] = $data['pago']->recibos;
         $data['movimiento'] = $data['pago']->movimientoCuenta;
@@ -83,8 +85,10 @@ class PagosController extends Controller
     {
         $pago = Pago::findOrFail($id);
         if (!$pago->puedeEditar()) {
-            return redirect("consultas/pagos")->with(['error' => 'No se puede modificar este pago, debido a que ya esta procesado'],
-                400);
+            return redirect("consultas/pagos")->with(
+                ['error' => 'No se puede modificar este pago, debido a que ya esta procesado'],
+                400
+            );
         }
         $movimiento = $pago->movimientoCuenta;
         $movimiento->cuenta_id = $request->get('cuenta_id');

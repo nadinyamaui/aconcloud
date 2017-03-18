@@ -1,6 +1,5 @@
 <?php namespace App\Http\Controllers\Recibos;
 
-
 use App\Events\CargarPanelesAdicionales;
 use App\Helpers\PanelArchivo;
 use App\Http\Controllers\Controller;
@@ -49,8 +48,10 @@ class CortesController extends Controller
         $data['carbon']->addMonth();
         $corte = CorteRecibo::generarCorte($data['carbon']->month, $data['carbon']->year);
         if (!$corte->movimientosConciliados()) {
-            return redirect('recibos/cortes/create')->with('error',
-                'Aun quedan movimientos bancarios por conciliar, deben conciliarse primero antes de generar el corte');
+            return redirect('recibos/cortes/create')->with(
+                'error',
+                'Aun quedan movimientos bancarios por conciliar, deben conciliarse primero antes de generar el corte'
+            );
         }
         if ($corte->save()) {
             return redirect('consultas/cortes')->with('mensaje', 'Se generó el corte mensual correctamente');
@@ -66,7 +67,9 @@ class CortesController extends Controller
             return response()->json(['mensaje' => 'Se eliminó el corte de recibo correctamente']);
         }
 
-        return response()->json(['error' => 'No se puede eliminar este corte de recibo, debido a que ya esta procesado'],
-            400);
+        return response()->json(
+            ['error' => 'No se puede eliminar este corte de recibo, debido a que ya esta procesado'],
+            400
+        );
     }
 }

@@ -49,8 +49,10 @@ class ClasificacionIngresoEgresoController extends Controller
             return response()->json(['mensaje' => 'Se eliminó la clasificación de ingreso, egreso correctamente']);
         }
 
-        return response()->json(['error' => 'No se puede eliminar la clasificación de ingreso, egreso, tiene registros asociados o esta bloqueado por el administrador'],
-            400);
+        return response()->json(
+            ['error' => 'No se puede eliminar la clasificación de ingreso, egreso, tiene registros asociados o esta bloqueado por el administrador'],
+            400
+        );
     }
 
     public function datatable(DatatableResponse $handler, Request $request)
@@ -66,8 +68,10 @@ class ClasificacionIngresoEgresoController extends Controller
                 return response()->json(['errores' => 'No se puede editar esta clasificación']);
             }
 
-            return redirect('admin-inquilino/clasificacion-ingreso-egreso')->with('error',
-                'No se puede editar esta clasificación');
+            return redirect('admin-inquilino/clasificacion-ingreso-egreso')->with(
+                'error',
+                'No se puede editar esta clasificación'
+            );
         }
         $clasificacion->fill($request->all());
         if ($clasificacion->save()) {
@@ -75,8 +79,10 @@ class ClasificacionIngresoEgresoController extends Controller
                 return response()->json(['mensaje' => 'Se guardó la clasificación de ingreso, egreso correctamente']);
             }
 
-            return redirect('admin-inquilino/clasificacion-ingreso-egreso')->with('mensaje',
-                'Se guardó la clasificación de ingreso, egreso correctamente');
+            return redirect('admin-inquilino/clasificacion-ingreso-egreso')->with(
+                'mensaje',
+                'Se guardó la clasificación de ingreso, egreso correctamente'
+            );
         }
         if ($request->ajax()) {
             return response()->json(['errores' => $clasificacion->getErrors()], 400);
@@ -93,8 +99,10 @@ class ClasificacionIngresoEgresoController extends Controller
                 return response()->json(['errores' => 'No se puede editar esta clasificación']);
             }
 
-            return redirect('admin-inquilino/clasificacion-ingreso-egreso')->with('error',
-                'No se puede editar esta clasificación');
+            return redirect('admin-inquilino/clasificacion-ingreso-egreso')->with(
+                'error',
+                'No se puede editar esta clasificación'
+            );
         }
         if ($request->ajax()) {
             return view('admin-inquilino.clasificacion-ingreso-egreso.modal', $data);
@@ -102,5 +110,4 @@ class ClasificacionIngresoEgresoController extends Controller
 
         return view('admin-inquilino.clasificacion-ingreso-egreso.form', $data);
     }
-
 }

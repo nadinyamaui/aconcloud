@@ -132,7 +132,7 @@ class User extends BaseModel implements AuthenticatableContract, CanResetPasswor
             }
         }
 
-        if(!$changePassword){
+        if (!$changePassword) {
             $user->save();
         }
 
@@ -246,9 +246,9 @@ class User extends BaseModel implements AuthenticatableContract, CanResetPasswor
                     $pass = 'Tu cuenta esta desactivada';
                 } else {
                     if ($user->tieneAcceso(Inquilino::$current)) {
-                        if($user->ind_autenticacion_en_dos_pasos){
+                        if ($user->ind_autenticacion_en_dos_pasos) {
                             return $user;
-                        }else{
+                        } else {
                             \Auth::login($user, true);
                         }
                     } else {
@@ -434,7 +434,7 @@ class User extends BaseModel implements AuthenticatableContract, CanResetPasswor
 
     public function enviarCorreo($view, $data, $asunto)
     {
-        if($this->ind_activo){
+        if ($this->ind_activo) {
             Email::encolar($view, $data, $asunto, $this);
         }
     }
@@ -456,9 +456,9 @@ class User extends BaseModel implements AuthenticatableContract, CanResetPasswor
 
     public function getRutaImagenPerfilAttribute()
     {
-        if(is_null($this->imagen_perfil)){
+        if (is_null($this->imagen_perfil)) {
             return url('uploads/default_images/none_big.jpg');
-        }else{
+        } else {
             return url('uploads/'.Inquilino::$current->id.'/'.$this->imagen_perfil);
         }
     }

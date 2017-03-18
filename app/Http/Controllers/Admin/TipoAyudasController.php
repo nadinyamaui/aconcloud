@@ -63,5 +63,4 @@ class TipoAyudasController extends Controller
 
         return view('admin.tipo-ayudas.form', $data);
     }
-
 }

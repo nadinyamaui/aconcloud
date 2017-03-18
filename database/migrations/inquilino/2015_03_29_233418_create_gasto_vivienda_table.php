@@ -30,5 +30,4 @@ class CreateGastoViviendaTable extends Migration
     {
         Schema::drop('gasto_vivienda');
     }
-
 }

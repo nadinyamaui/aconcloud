@@ -37,5 +37,4 @@ class InquilinoComprado extends Job implements ShouldQueue
             $message->to($email, $nombre)->subject('¡Gracias por adquirir aconcloud!');
         });
     }
-
 }

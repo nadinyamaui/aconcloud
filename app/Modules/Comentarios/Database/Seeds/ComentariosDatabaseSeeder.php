@@ -17,5 +17,4 @@ class ComentariosDatabaseSeeder extends Seeder
 
         // $this->call('App\Modules\Comentarios\Database\Seeds\FoobarTableSeeder');
     }
-
 }

@@ -30,5 +30,4 @@ class CreateInquilinoModuloTable extends Migration
     {
         Schema::drop('inquilino_modulo');
     }
-
 }

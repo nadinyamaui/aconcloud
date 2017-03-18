@@ -49,5 +49,4 @@ class CreateMovimientosCuentaTable extends Migration
     {
         Schema::drop('movimientos_cuenta');
     }
-
 }

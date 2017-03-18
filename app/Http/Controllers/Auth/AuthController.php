@@ -56,7 +56,7 @@ class AuthController extends Controller
 
             return redirect()->intended('');
             //Autenticacion en dos pasos
-        } elseif($result instanceof User && $result->ind_autenticacion_en_dos_pasos){
+        } elseif ($result instanceof User && $result->ind_autenticacion_en_dos_pasos) {
             $result->enviarCodigoEnDosPasos();
             session()->set('user_id', $result->id);
             return redirect('auth/second-step');
@@ -88,8 +88,10 @@ class AuthController extends Controller
         $vivienda = Vivienda::whereTipoViviendaId($request->get('tipo_vivienda_id'))->whereNull("piso")->whereNull("torre")->first();
         if (is_null($vivienda)) {
             $vivienda = new Vivienda();
-            $vivienda->addError('tipo_vivienda_id',
-                'Ya no hay viviendas disponibles de este tipo, seguro que este es tu tipo de vivienda');
+            $vivienda->addError(
+                'tipo_vivienda_id',
+                'Ya no hay viviendas disponibles de este tipo, seguro que este es tu tipo de vivienda'
+            );
 
             return redirect()->back()->withErrors($vivienda->getErrors())->withInput();
         }
@@ -136,7 +138,7 @@ class AuthController extends Controller
     public function postSecondStep(SecondStepRequest $request)
     {
         $user = User::findOrFail(session('user_id'));
-        if($user->codigoValido($request->get('token_autenticacion_en_dos_pasos'))){
+        if ($user->codigoValido($request->get('token_autenticacion_en_dos_pasos'))) {
             auth()->login($user);
             return redirect()->intended('');
         }

@@ -42,21 +42,17 @@ class EnviarNotificacionMatutina extends Command
     public function handle()
     {
         $inquilinos = Inquilino::all();
-        foreach($inquilinos as $inquilino)
-        {
-            if($inquilino->tieneModulo('asambleas'))
-            {
+        foreach ($inquilinos as $inquilino) {
+            if ($inquilino->tieneModulo('asambleas')) {
                 $this->info('Activando inquilino: '.$inquilino->nombre);
                 //Activamos el inquilino
                 Inquilino::setActivo($inquilino->host);
                 $hoy = Carbon::now();
                 $asambleas = Asamblea::whereIndNotificacionManana(false)->whereFecha($hoy->format('Y-m-d'))->whereEstatus("pendiente")->get();
                 $usuarios = Inquilino::$current->usuarios;
-                foreach ($asambleas as $asamblea)
-                {
+                foreach ($asambleas as $asamblea) {
                     $this->info('Notificando asamblea: '.$asamblea->titulo);
-                    foreach($usuarios as $usuario)
-                    {
+                    foreach ($usuarios as $usuario) {
                         $data['id'] = $asamblea->id;
                         $data['destinatario'] = $usuario->nombre_completo;
                         $data['titulo'] = $asamblea->titulo;
@@ -64,7 +60,7 @@ class EnviarNotificacionMatutina extends Command
                         $data['hora_fin'] = $asamblea->hora_fin;
                         $data['es_autor'] = $usuario->id == $asamblea->autor_id;
                         //Se le envia un mensaje de texto al autor de la propuesta
-                        if($data['es_autor']){
+                        if ($data['es_autor']) {
                             SmsEnviado::encolar('Te informamos que eres el moderador de una asamblea que se dictará el dia de hoy, recuerda tener todo preparado para que la asamblea comience a tiempo', $usuario);
                         }
                         $usuario->enviarCorreo('asambleas::emails.asambleas.notificaciones.matutina', $data, 'Notificación de asamblea en '.$inquilino->nombre);

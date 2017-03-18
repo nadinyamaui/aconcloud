@@ -49,5 +49,4 @@ class PropuestaEnVotacion extends Job implements ShouldQueue
             $user->enviarCorreo('propuestas::emails.propuestas.en_votacion', $data, $data['asunto']);
         }
     }
-
 }

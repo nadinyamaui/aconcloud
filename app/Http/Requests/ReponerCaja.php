@@ -26,5 +26,4 @@ class ReponerCaja extends Request
             'monto_reponer' => 'required',
         ];
     }
-
 }

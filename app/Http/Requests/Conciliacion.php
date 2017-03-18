@@ -27,5 +27,4 @@ class Conciliacion extends Request
             'archivo'   => 'required',
         ];
     }
-
 }

@@ -41,8 +41,10 @@ class IngresosController extends Controller
     {
         $data['ingreso'] = MovimientosCuenta::findOrFail($id);
 
-        $data['panelesAdicionales'] = event(new CargarPanelesAdicionales($data['ingreso'],
-            ['archivos', 'comentarios']));
+        $data['panelesAdicionales'] = event(new CargarPanelesAdicionales(
+            $data['ingreso'],
+            ['archivos', 'comentarios']
+        ));
 
         return view('registrar.ingresos.show', $data);
     }
@@ -51,8 +53,10 @@ class IngresosController extends Controller
     {
         $ingreso = MovimientosCuenta::findOrNew($id);
         if (!$ingreso->puedeEditar()) {
-            return redirect('consultas/ingresos')->with('error',
-                'No se puede editar este ingreso, debido a que ya esta procesado');
+            return redirect('consultas/ingresos')->with(
+                'error',
+                'No se puede editar este ingreso, debido a que ya esta procesado'
+            );
         }
         $ingreso->fill($request->all());
         $ingreso->forma_pago = "banco";
@@ -70,24 +74,29 @@ class IngresosController extends Controller
     {
         $data['ingreso'] = MovimientosCuenta::findOrNew($id);
         if (is_object($data['ingreso']->movimientoPadre) || $data['ingreso']->ind_movimiento_en_cuotas) {
-            return redirect('consultas/ingresos')->with('error',
-                'No se pueden editar ingresos que estan fraccionados en cuotas, debe eliminarlos y volverlos a crear');
+            return redirect('consultas/ingresos')->with(
+                'error',
+                'No se pueden editar ingresos que estan fraccionados en cuotas, debe eliminarlos y volverlos a crear'
+            );
         }
         $data['clasificaciones'] = ClasificacionIngresoEgreso::getLista(false);
         if (!$data['ingreso']->exists) {
             $data['ingreso']->fecha_factura = Carbon::now();
         }
         if (!$data['ingreso']->puedeEditar()) {
-            return redirect('consultas/ingresos')->with('error',
-                'No se puede editar este ingreso, debido a que ya esta procesado');
+            return redirect('consultas/ingresos')->with(
+                'error',
+                'No se puede editar este ingreso, debido a que ya esta procesado'
+            );
         }
 
         if ($data['ingreso']->exists) {
-            $data['panelesAdicionales'] = event(new CargarPanelesAdicionales($data['ingreso'],
-                ['archivos', 'comentarios']));
+            $data['panelesAdicionales'] = event(new CargarPanelesAdicionales(
+                $data['ingreso'],
+                ['archivos', 'comentarios']
+            ));
         }
 
         return view('registrar.ingresos.form', $data);
     }
-
 }

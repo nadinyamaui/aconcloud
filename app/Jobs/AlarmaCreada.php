@@ -41,5 +41,4 @@ class AlarmaCreada extends Job implements ShouldQueue
             $usuario->enviarCorreo('emails.alarmas.created', $data, $asunto);
         }
     }
-
 }

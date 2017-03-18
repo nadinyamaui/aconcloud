@@ -34,5 +34,4 @@ class CentralForeignsKeys extends Migration
     {
         //
     }
-
 }

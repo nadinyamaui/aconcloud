@@ -23,5 +23,4 @@ class VerificarInquilinoConfigurado
 
         return redirect('admin-inquilino/configurar/paso1')->with('mensaje', 'Debes configurar tu condominio primero');
     }
-
 }

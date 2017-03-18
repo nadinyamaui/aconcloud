@@ -54,5 +54,4 @@ class RecordarVotoVecinos extends Job implements ShouldQueue
             SmsEnviado::encolar($sms, $user);
         }
     }
-
 }

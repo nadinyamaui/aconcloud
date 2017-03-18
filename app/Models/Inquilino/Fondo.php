@@ -128,8 +128,10 @@ class Fondo extends BaseModel
                 $this->addError('saldo_actual', 'No hay suficiente dinero en la cuenta seleccionada');
             }
             if ($this->ind_caja_chica && $this->monto_maximo < $this->saldo_actual) {
-                $this->addError(['monto_maximo', 'saldo_actual'],
-                    'El monto base de la caja no puede ser menor al saldo actual.');
+                $this->addError(
+                    ['monto_maximo', 'saldo_actual'],
+                    'El monto base de la caja no puede ser menor al saldo actual.'
+                );
             }
             if ($this->ind_caja_chica) {
                 $count = self::whereIndCajaChica(true)->where('id', '<>', $this->id == null ? 0 : $this->id)->count();

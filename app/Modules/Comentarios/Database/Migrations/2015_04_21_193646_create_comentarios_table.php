@@ -35,5 +35,4 @@ class CreateComentariosTable extends Migration
     {
         Schema::drop('comentarios');
     }
-
 }

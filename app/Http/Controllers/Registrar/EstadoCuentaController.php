@@ -8,7 +8,6 @@
 
 namespace App\Http\Controllers\Registrar;
 
-
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Conciliacion;
 use App\Models\Inquilino\MovimientosCuenta;
@@ -58,8 +57,12 @@ class EstadoCuentaController extends Controller
     {
         $movimientosPendientes = Cache::pull('movimientosPendientes');
         $movimientosConciliar = Cache::pull('movimientosConciliar');
-        $conciliacion = new \App\Helpers\Conciliacion(null, $request->get('cuenta_id'), $movimientosPendientes,
-            $movimientosConciliar);
+        $conciliacion = new \App\Helpers\Conciliacion(
+            null,
+            $request->get('cuenta_id'),
+            $movimientosPendientes,
+            $movimientosConciliar
+        );
         $conciliacion->confirmarConciliacion();
 
         return redirect('admin-inquilino/cuentas/' . $conciliacion->cuenta->id);

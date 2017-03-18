@@ -17,8 +17,10 @@ class CorteReciboObserver extends BaseObserver
     {
         $count = CorteRecibo::whereEstatus("ELA")->count();
         if ($count > 0) {
-            $corteRecibo->addError("estatus",
-                "Existe un corte en elaboración, se debe procesar antes de generar un nuevo corte");
+            $corteRecibo->addError(
+                "estatus",
+                "Existe un corte en elaboración, se debe procesar antes de generar un nuevo corte"
+            );
         }
 
         return !$corteRecibo->hasErrors();

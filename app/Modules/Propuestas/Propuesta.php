@@ -231,18 +231,18 @@ class Propuesta extends BaseModel
 
     public function getDecisionDisplayAttribute()
     {
-        if($this->total_votos_a_favor > $this->total_votos_en_contra){
+        if ($this->total_votos_a_favor > $this->total_votos_en_contra) {
             return "APROBADA";
-        }else if($this->total_votos_en_contra >= $this->total_votos_a_favor){
+        } else if ($this->total_votos_en_contra >= $this->total_votos_a_favor) {
             return "RECHAZADA";
         }
     }
 
     public function getDecisionColor()
     {
-        if($this->total_votos_a_favor > $this->total_votos_en_contra){
+        if ($this->total_votos_a_favor > $this->total_votos_en_contra) {
             return "success";
-        }else if($this->total_votos_en_contra >= $this->total_votos_a_favor){
+        } else if ($this->total_votos_en_contra >= $this->total_votos_a_favor) {
             return "danger";
         }
     }

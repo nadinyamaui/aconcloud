@@ -46,5 +46,4 @@ class VotoRegistrado extends Job implements ShouldQueue
 
         $user->enviarCorreo('propuestas::emails.votaciones.voto', $data, $data['asunto']);
     }
-
 }

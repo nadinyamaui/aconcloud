@@ -23,7 +23,9 @@ class VerificarAccesoPropuesta
             return $next($request);
         }
 
-        return redirect('modulos/propuestas/propuestas')->with('error',
-            'No tienes permiso para modificar o crear propuestas');
+        return redirect('modulos/propuestas/propuestas')->with(
+            'error',
+            'No tienes permiso para modificar o crear propuestas'
+        );
     }
 }

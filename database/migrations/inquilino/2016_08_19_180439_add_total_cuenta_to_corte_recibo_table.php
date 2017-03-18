@@ -25,7 +25,6 @@ class AddTotalCuentaToCorteReciboTable extends Migration
     public function down()
     {
         Schema::table('corte_recibos', function (Blueprint $table) {
-
         });
     }
 }

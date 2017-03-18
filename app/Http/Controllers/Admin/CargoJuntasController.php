@@ -38,8 +38,10 @@ class CargoJuntasController extends Controller
             return response()->json(['mensaje' => 'Se eliminó el cargo de la junta correctamente']);
         }
 
-        return response()->json(['error' => 'No se puede eliminar el cargo de la junta, tiene registros asociados'],
-            400);
+        return response()->json(
+            ['error' => 'No se puede eliminar el cargo de la junta, tiene registros asociados'],
+            400
+        );
     }
 
     public function datatable(DatatableResponse $handler, Request $request)
@@ -64,5 +66,4 @@ class CargoJuntasController extends Controller
 
         return view('admin.cargos-junta.form', $data);
     }
-
 }

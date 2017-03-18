@@ -52,5 +52,4 @@ class IngresoModificado extends Job implements ShouldQueue
             $usuario->enviarCorreo('emails.ingresos.updated', $data, $asunto);
         }
     }
-
 }

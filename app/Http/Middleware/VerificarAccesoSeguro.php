@@ -17,7 +17,7 @@ class VerificarAccesoSeguro
     public function handle($request, Closure $next)
     {
         $inquilinosSeguros = ['miranda.aconcloud.com.ve'];
-        if(!$request->isSecure() && in_array(InqulinoDB::$current->host, $inquilinosSeguros) && env('APP_ENV') != "local"){
+        if (!$request->isSecure() && in_array(InqulinoDB::$current->host, $inquilinosSeguros) && env('APP_ENV') != "local") {
             return redirect()->secure($request->path());
         }
         return $next($request);

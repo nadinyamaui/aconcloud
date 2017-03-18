@@ -24,5 +24,4 @@ class InquilinoTableSeeder extends \Illuminate\Database\Seeder
             'email_administrador' => 'arasmit_yamaui@hotmail.com',
         ]);
     }
-
 }

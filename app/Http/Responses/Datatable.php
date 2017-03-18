@@ -29,8 +29,10 @@ class Datatable
                     if (isset(static::$columnasCalculadas[$column])) {
                         $column = static::$columnasCalculadas[$column];
                     }
-                    if (!in_array($column, static::$htmlTypes) && !str_contains($column,
-                            '->') && !$model->hasGetMutator($column)
+                    if (!in_array($column, static::$htmlTypes) && !str_contains(
+                        $column,
+                        '->'
+                    ) && !$model->hasGetMutator($column)
                     ) {
                         $query->orWhere($column, 'LIKE', '%' . $search['value'] . '%');
                     }
@@ -44,8 +46,10 @@ class Datatable
             if (isset(static::$columnasCalculadas[$column])) {
                 $column = static::$columnasCalculadas[$column];
             }
-            if (!in_array($column, static::$htmlTypes) && !str_contains($column,
-                    '->') && !$query->getModel()->hasGetMutator($column)
+            if (!in_array($column, static::$htmlTypes) && !str_contains(
+                $column,
+                '->'
+            ) && !$query->getModel()->hasGetMutator($column)
             ) {
                 $query = $query->orderBy($column, $order['dir']);
             }

@@ -45,5 +45,4 @@ class ChatListener
             static::class . '@onArchivoCargado'
         );
     }
-
 }

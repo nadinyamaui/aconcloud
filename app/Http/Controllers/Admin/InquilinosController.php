@@ -73,5 +73,4 @@ class InquilinosController extends Controller
 
         return view('admin.inquilinos.form', $data);
     }
-
 }

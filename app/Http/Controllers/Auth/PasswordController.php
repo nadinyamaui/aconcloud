@@ -33,5 +33,4 @@ class PasswordController extends Controller
     {
         $this->middleware('guest');
     }
-
 }

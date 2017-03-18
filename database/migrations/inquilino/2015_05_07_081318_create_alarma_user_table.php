@@ -34,5 +34,4 @@ class CreateAlarmaUserTable extends Migration
     {
         Schema::drop('alarma_user');
     }
-
 }

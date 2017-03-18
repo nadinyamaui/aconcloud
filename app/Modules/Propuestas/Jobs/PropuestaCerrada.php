@@ -49,5 +49,4 @@ class PropuestaCerrada extends Job implements ShouldQueue
             $user->enviarCorreo('propuestas::emails.propuestas.cerrada', $data, $data['asunto']);
         }
     }
-
 }

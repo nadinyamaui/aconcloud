@@ -67,7 +67,6 @@ class CuentasController extends Controller
         }
 
         return response()->json(['error' => 'No se puede eliminar la cuenta, tiene registros asociados'], 400);
-
     }
 
     public function datatable(DatatableResponse $handler, Request $request)
@@ -102,5 +101,4 @@ class CuentasController extends Controller
 
         return view('admin-inquilino.cuentas.form', $data);
     }
-
 }

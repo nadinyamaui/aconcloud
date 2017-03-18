@@ -31,5 +31,4 @@ class VerificarAccesoInquilino
             return redirect('auth/login')->with('error', 'No tienes acceso para este inquilino');
         }
     }
-
 }

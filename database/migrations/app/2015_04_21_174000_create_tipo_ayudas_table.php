@@ -34,5 +34,4 @@ class CreateTipoAyudasTable extends Migration
     {
         Schema::drop('tipo_ayudas');
     }
-
 }

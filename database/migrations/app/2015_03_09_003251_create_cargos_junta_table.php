@@ -29,5 +29,4 @@ class CreateCargosJuntaTable extends Migration
     {
         Schema::drop('cargos_junta');
     }
-
 }

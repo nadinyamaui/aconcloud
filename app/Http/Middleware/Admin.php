@@ -22,5 +22,4 @@ class Admin extends Permisos
 
         return $this->denyAccess();
     }
-
 }

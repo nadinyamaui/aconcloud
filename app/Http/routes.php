@@ -44,7 +44,7 @@ Route::group(['middleware' => ['auth']], function ($router) {
         $router->post('recibos/confirmar', 'RecibosController@postConfirmar');
     });
 
-    $router->group(['prefix' => 'users'], function($router){
+    $router->group(['prefix' => 'users'], function ($router) {
         $router->get('perfil', 'UsersController@perfil');
         $router->post('perfil', 'UsersController@guardarPerfil');
         $router->post('foto', 'UsersController@guardarFoto');
@@ -85,7 +85,8 @@ Route::group(['middleware' => ['auth']], function ($router) {
         $router->get('admin-inquilino/viviendas/{id}', 'ViviendasController@show');
     });
 
-    $router->group(['prefix' => 'admin-inquilino', 'middleware' => 'permisos.junta', 'namespace' => 'AdminInquilino'],
+    $router->group(
+        ['prefix' => 'admin-inquilino', 'middleware' => 'permisos.junta', 'namespace' => 'AdminInquilino'],
         function ($router) {
 
             $router->resource('cuentas', 'CuentasController');
@@ -104,8 +105,10 @@ Route::group(['middleware' => ['auth']], function ($router) {
             $router->post('usuarios/datatable', 'UsuariosController@datatable');
 
             $router->resource('clasificacion-ingreso-egreso', 'ClasificacionIngresoEgresoController');
-            $router->post('clasificacion-ingreso-egreso/datatable',
-                'ClasificacionIngresoEgresoController@datatable');
+            $router->post(
+                'clasificacion-ingreso-egreso/datatable',
+                'ClasificacionIngresoEgresoController@datatable'
+            );
 
             $router->resource('periodo-junta', 'PeriodoJuntaController');
             $router->post('periodo-junta/datatable', 'PeriodoJuntaController@datatable');
@@ -138,7 +141,8 @@ Route::group(['middleware' => ['auth']], function ($router) {
             });
 
             $router->resource('preferencias', 'PreferenciasController', ['only' => ['index', 'store']]);
-        });
+        }
+    );
 
     $router->group(['prefix' => 'admin', 'middleware' => 'permisos.admin'], function ($router) {
         $router->resource('inquilinos', 'Admin\InquilinosController');

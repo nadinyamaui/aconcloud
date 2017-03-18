@@ -32,5 +32,4 @@ class CreateGruposTable extends Migration
     {
         Schema::drop('grupos');
     }
-
 }

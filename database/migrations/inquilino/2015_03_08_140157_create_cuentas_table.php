@@ -31,5 +31,4 @@ class CreateCuentasTable extends Migration
     {
         Schema::drop('cuentas');
     }
-
 }

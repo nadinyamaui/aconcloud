@@ -13,5 +13,4 @@ class ArchivosController extends Controller
 
         return view('miscelaneos.archivos.index', $data);
     }
-
 }

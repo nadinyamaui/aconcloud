@@ -8,7 +8,6 @@
 
 namespace App\Http\Controllers\Consultas;
 
-
 use App\Http\Controllers\Controller;
 use App\Http\Responses\DatatableResponse;
 use App\Models\Inquilino\Pago;

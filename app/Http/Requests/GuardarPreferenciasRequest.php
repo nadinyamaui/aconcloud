@@ -1,6 +1,5 @@
 <?php namespace App\Http\Requests;
 
-
 class GuardarPreferenciasRequest extends Request
 {
 
@@ -29,5 +28,4 @@ class GuardarPreferenciasRequest extends Request
             'inicio_morosidad'     => 'required|integer|min:1',
         ];
     }
-
 }

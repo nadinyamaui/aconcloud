@@ -38,9 +38,11 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function map(Router $router)
     {
-        $router->group(['namespace' => $this->namespace, 'prefix' => 'modulos/comentarios', 'middleware' => 'auth'],
+        $router->group(
+            ['namespace' => $this->namespace, 'prefix' => 'modulos/comentarios', 'middleware' => 'auth'],
             function ($router) {
                 require(config('modules.path') . '/Comentarios/Http/routes.php');
-            });
+            }
+        );
     }
 }

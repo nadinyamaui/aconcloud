@@ -32,5 +32,4 @@ class Registro extends Request
             'torre'                 => '',
         ];
     }
-
 }

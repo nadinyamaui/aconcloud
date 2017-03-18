@@ -107,5 +107,4 @@ class Alarma extends BaseModel
             'atender_link' => 'Atender alarma',
         ];
     }
-
 }

@@ -141,8 +141,12 @@ class Vivienda extends BaseModel
 
     public function gastos()
     {
-        return $this->belongsToMany('App\Models\Inquilino\MovimientosCuenta', 'gasto_vivienda', 'vivienda_id',
-            'gasto_id')
+        return $this->belongsToMany(
+            'App\Models\Inquilino\MovimientosCuenta',
+            'gasto_vivienda',
+            'vivienda_id',
+            'gasto_id'
+        )
             ->withTimestamps();
     }
 

@@ -94,5 +94,4 @@ class ViviendasController extends Controller
 
         return view('admin-inquilino.viviendas.form', $data);
     }
-
 }

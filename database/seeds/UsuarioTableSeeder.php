@@ -31,5 +31,4 @@ class UsuarioTableSeeder extends \Illuminate\Database\Seeder
             'grupo_id'     => 1,
         ]);
     }
-
 }

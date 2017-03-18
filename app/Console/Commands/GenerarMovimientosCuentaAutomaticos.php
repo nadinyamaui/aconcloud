@@ -40,5 +40,4 @@ class GenerarMovimientosCuentaAutomaticos extends Command
             $this->info("Movimientos automaticos generados");
         });
     }
-
 }

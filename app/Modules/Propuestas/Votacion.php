@@ -67,7 +67,7 @@ class Votacion extends BaseModel
 
     public function getNombrePropietarioAttribute()
     {
-        if($this->vivienda->propietario){
+        if ($this->vivienda->propietario) {
             return $this->vivienda->propietario->nombre_completo;
         }
     }

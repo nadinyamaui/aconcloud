@@ -15,7 +15,7 @@ class VerificarTerminosAceptadosMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if(auth()->check() && auth()->user()->terminos_aceptados == false && !$request->is('terminos-condiciones')){
+        if (auth()->check() && auth()->user()->terminos_aceptados == false && !$request->is('terminos-condiciones')) {
             return redirect('terminos-condiciones');
         }
         return $next($request);

@@ -32,7 +32,7 @@ class Asistente extends BaseModel
 
     public function getIndAsistioBotonAttribute()
     {
-        if(User::esJunta(true)){
+        if (User::esJunta(true)) {
             return '<div class="btn-group" data-toggle="buttons">
             <label class="btn btn-default boton-asamblea-asistencia '.($this->ind_asistio ? 'active':'').'" data-id="'.$this->id.'">
                 <input class="form-control" data-id="'.$this->id.'" id="ind_asistio" '.($this->ind_asistio ? 'checked="checked"':'').' name="ind_asistio" type="radio" value="1"> Si
@@ -41,7 +41,7 @@ class Asistente extends BaseModel
                 <input class="form-control boton-asamblea-asistencia" id="ind_asistio" '.($this->ind_asistio ? '':'checked="checked"').' name="ind_asistio" type="radio" value="0"> No
             </label>
         </div>';
-        }else{
+        } else {
             return $this->getValueAt('ind_asistio');
         }
     }
@@ -60,5 +60,4 @@ class Asistente extends BaseModel
     {
         return [];
     }
-
 }

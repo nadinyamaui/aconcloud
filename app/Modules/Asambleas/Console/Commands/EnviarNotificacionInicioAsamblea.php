@@ -41,10 +41,8 @@ class EnviarNotificacionInicioAsamblea extends Command
     public function handle()
     {
         $inquilinos = Inquilino::all();
-        foreach($inquilinos as $inquilino)
-        {
-            if($inquilino->tieneModulo('asambleas'))
-            {
+        foreach ($inquilinos as $inquilino) {
+            if ($inquilino->tieneModulo('asambleas')) {
                 $this->info('Activando inquilino: '.$inquilino->nombre);
                 //Activamos el inquilino
                 Inquilino::setActivo($inquilino->host);
@@ -52,13 +50,11 @@ class EnviarNotificacionInicioAsamblea extends Command
 
                 $asambleas = Asamblea::whereIndNotificacionInicio(false)->whereFecha($hoy->format('Y-m-d'))->whereEstatus("pendiente")->get();
 
-                foreach ($asambleas as $asamblea)
-                {
+                foreach ($asambleas as $asamblea) {
                     $fechaInicio = $asamblea->getFechaInicio();
 
                     //Si la asamblea ya comenzo mandemos los correos
-                    if($fechaInicio->lte(Carbon::now()))
-                    {
+                    if ($fechaInicio->lte(Carbon::now())) {
                         $this->info('Notificando asamblea: '.$asamblea->titulo);
                         $usuario = $asamblea->autor;
                         $data['id'] = $asamblea->id;

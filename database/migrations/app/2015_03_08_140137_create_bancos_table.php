@@ -29,5 +29,4 @@ class CreateBancosTable extends Migration
     {
         Schema::drop('bancos');
     }
-
 }

@@ -22,5 +22,4 @@ class Propietario extends Permisos
 
         return $this->denyAccess();
     }
-
 }

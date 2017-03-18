@@ -8,7 +8,6 @@
 
 namespace App\Http\Controllers\Registrar;
 
-
 use App\Http\Controllers\Controller;
 use App\Models\Inquilino\MovimientosCuenta;
 use Illuminate\Http\Request;
@@ -50,5 +49,4 @@ class ConciliarController extends Controller
 
         return redirect('registrar/conciliar')->with('mensaje', 'Se conciliaron los movimientos correctamente');
     }
-
 }

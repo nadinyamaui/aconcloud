@@ -39,5 +39,4 @@ class VerificarRecibosVencidos extends Command
             Recibo::verificarRecibosVencidos();
         });
     }
-
 }

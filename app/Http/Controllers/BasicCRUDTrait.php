@@ -8,7 +8,6 @@
 
 namespace App\Http\Controllers;
 
-
 use Illuminate\Http\Request;
 
 trait BasicCRUDTrait

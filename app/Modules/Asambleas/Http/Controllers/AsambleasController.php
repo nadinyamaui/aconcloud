@@ -36,7 +36,7 @@ class AsambleasController extends Controller
         $data['mensajes'] = $data['asamblea']->mensajesChat;
         $data['asistentesColums'] = Asistente::getDescriptions(['nombre', 'apellido', 'hora_ingreso', 'ind_asistio_boton']);
         $data['propuestas'] = $data['asamblea']->propuestas;
-        if($data['asamblea']->estatus == "en_curso"){
+        if ($data['asamblea']->estatus == "en_curso") {
             $data['asamblea']->asistente();
         }
         return view('asambleas::asambleas.show', $data);
@@ -55,7 +55,7 @@ class AsambleasController extends Controller
     public function comenzar($id)
     {
         $asamblea = Asamblea::findOrFail($id);
-        if($asamblea->comenzar()){
+        if ($asamblea->comenzar()) {
             return redirect('modulos/asambleas/asambleas/'.$id)->with('mensaje', 'Todo listo!. Estamos en vivo preparate para que todo comience');
         }
 
@@ -65,7 +65,7 @@ class AsambleasController extends Controller
     public function terminada($id)
     {
         $asamblea = Asamblea::findOrFail($id);
-        if($asamblea->terminada()){
+        if ($asamblea->terminada()) {
             return redirect('modulos/asambleas/asambleas/'.$id)->with('mensaje', '¡Listo!. Esta asamblea ha culminado');
         }
 
@@ -77,11 +77,11 @@ class AsambleasController extends Controller
         $asamblea = Asamblea::findOrNew($id);
         $is_new = !$asamblea->exists;
         $asamblea->fill($request->all());
-        if(count($request->get('propuestas', [])) == 0 && $is_new){
+        if (count($request->get('propuestas', [])) == 0 && $is_new) {
             $asamblea->addError('propuestas', 'Debes seleccionar al menos una propuesta a discutir durante esta asamblea');
         }
         if ($asamblea->save()) {
-            if($is_new){
+            if ($is_new) {
                 $asamblea->propuestas()->saveMany(Propuesta::findMany($request->get('propuestas')));
                 $asamblea->cambiarEstatus();
                 if ($asamblea->ind_enviar_email) {

@@ -63,5 +63,4 @@ class ModulosController extends Controller
 
         return view('admin.modulos.form', $data);
     }
-
 }

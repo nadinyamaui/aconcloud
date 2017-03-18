@@ -11,5 +11,4 @@ class Permisos
             return \Response::view('errors.403', [], 403);
         }
     }
-
 }

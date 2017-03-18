@@ -8,7 +8,6 @@
 
 namespace App\Listeners\Models;
 
-
 use App\Jobs\GastoModificado;
 use App\Jobs\GastoRegistrado;
 use App\Jobs\IngresoModificado;

@@ -31,8 +31,10 @@ class PropuestasController extends Controller
     public function show($id)
     {
         $data['propuesta'] = Propuesta::findOrFail($id);
-        $data['panelesAdicionales'] = event(new CargarPanelesAdicionales($data['propuesta'],
-            ['archivos', 'comentarios']));
+        $data['panelesAdicionales'] = event(new CargarPanelesAdicionales(
+            $data['propuesta'],
+            ['archivos', 'comentarios']
+        ));
 
         $data['mensajes'] = $data['propuesta']->mensajesChat;
 
@@ -91,10 +93,11 @@ class PropuestasController extends Controller
 
         $data['usuarios'] = Inquilino::$current->usuarios->where('codigo_grupo_activo', 'junta')->lists('nombre_completo', 'id')->all();
 
-        $data['panelesAdicionales'] = event(new CargarPanelesAdicionales($data['propuesta'],
-            ['archivos', 'comentarios']));
+        $data['panelesAdicionales'] = event(new CargarPanelesAdicionales(
+            $data['propuesta'],
+            ['archivos', 'comentarios']
+        ));
 
         return view('propuestas::propuestas.form', $data);
     }
-
 }

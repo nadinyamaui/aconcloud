@@ -30,5 +30,4 @@ class AddTelefonosToUsuarios extends Migration
             //
         });
     }
-
 }

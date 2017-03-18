@@ -36,5 +36,4 @@ class CreatePeriodoJuntaUser extends Migration
     {
         Schema::drop('periodo_junta_user');
     }
-
 }

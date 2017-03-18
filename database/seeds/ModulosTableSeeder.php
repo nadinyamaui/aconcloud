@@ -15,5 +15,4 @@ class ModulosTableSeeder extends \Illuminate\Database\Seeder
             'costo_mensual' => '0,00',
         ]);
     }
-
 }

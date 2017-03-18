@@ -38,7 +38,8 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function map(Router $router)
     {
-        $router->group(['namespace' => $this->namespace, 'prefix' => 'modulos/propuestas', 'middleware' => 'auth'],
+        $router->group(
+            ['namespace' => $this->namespace, 'prefix' => 'modulos/propuestas', 'middleware' => 'auth'],
             function ($router) {
                 $router->get('propuestas/{id}/activar-votacion', 'PropuestasController@activarVotacion');
                 $router->get('propuestas/{id}/recordar-vecinos', 'PropuestasController@recordarVecinos');
@@ -51,7 +52,7 @@ class RouteServiceProvider extends ServiceProvider
                 $router->post('propuestas/{propuesta_id}/votaciones/datatable', 'VotacionesController@datatable');
 
                 $router->resource('propuestas/{propuesta_id}/votaciones', 'VotacionesController');
-
-            });
+            }
+        );
     }
 }

@@ -17,11 +17,13 @@ class SoloEditaPropuestasAbiertas
     public function handle($request, Closure $next)
     {
         $propuesta = Propuesta::findOrFail($request->route('propuestas'));
-        if($propuesta->puedeEditar()){
+        if ($propuesta->puedeEditar()) {
             return $next($request);
         }
 
-        return redirect('modulos/propuestas/propuestas')->with('mensaje',
-            'No se puede modificar esta propuesta porque esta en proceso de votación o esta cerrada');
+        return redirect('modulos/propuestas/propuestas')->with(
+            'mensaje',
+            'No se puede modificar esta propuesta porque esta en proceso de votación o esta cerrada'
+        );
     }
 }

@@ -35,8 +35,10 @@ class FormBuilder extends BaseFormBuilder
         $params['id'] = $name;
         $params['placeholder'] = $label;
 
-        return view('templates.bootstrap.input_only',
-            compact('name', 'value', 'label', 'numCols', 'type', 'params', 'editor'))->render();
+        return view(
+            'templates.bootstrap.input_only',
+            compact('name', 'value', 'label', 'numCols', 'type', 'params', 'editor')
+        )->render();
     }
 
     public function displaySimple($obj, $attrName)
@@ -169,5 +171,4 @@ class FormBuilder extends BaseFormBuilder
 
         return view('templates.bootstrap.multiselect', $data)->render();
     }
-
 }

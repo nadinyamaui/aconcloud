@@ -2,7 +2,6 @@
 
 namespace App\Modules\Comentarios\Http\Controllers;
 
-
 use App\Http\Controllers\Controller;
 use App\Modules\Comentarios\Comentario;
 use Illuminate\Http\Request;

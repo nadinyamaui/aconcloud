@@ -42,5 +42,4 @@ class CreateMensajariaMensajesTable extends Migration
     {
         Schema::drop('mensajeria_mensajes');
     }
-
 }

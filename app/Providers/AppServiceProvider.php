@@ -12,7 +12,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if ($this->app->environment() == "local"){
+        if ($this->app->environment() == "local") {
             $this->app->register(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class);
             $this->app->register(\Barryvdh\Debugbar\ServiceProvider::class);
         } else if ($this->app->environment() == "production") {
@@ -29,5 +29,4 @@ class AppServiceProvider extends ServiceProvider
     {
         //
     }
-
 }

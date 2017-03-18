@@ -74,5 +74,4 @@ class ReciboRegistrado extends Job implements ShouldQueue
             SmsEnviado::encolar($mensaje, $usuario);
         }
     }
-
 }

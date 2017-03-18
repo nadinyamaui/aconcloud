@@ -47,5 +47,4 @@ class MensajeEnviado extends Job implements ShouldQueue
         $data['nombreRemitente'] = $mensaje->remitente->nombre_completo;
         $mensaje->destinatario->enviarCorreo('mensajeria::emails.mensajes.enviado', $data, $data['asunto']);
     }
-
 }

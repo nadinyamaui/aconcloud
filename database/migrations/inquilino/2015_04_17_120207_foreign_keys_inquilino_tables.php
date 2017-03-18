@@ -74,5 +74,4 @@ class ForeignKeysInquilinoTables extends Migration
     {
         //
     }
-
 }

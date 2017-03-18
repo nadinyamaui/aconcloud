@@ -15,5 +15,4 @@ class AsambleasDatabaseSeeder extends Seeder
     {
         Model::unguard();
     }
-
 }

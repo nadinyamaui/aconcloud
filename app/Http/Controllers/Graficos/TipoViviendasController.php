@@ -8,7 +8,6 @@
 
 namespace App\Http\Controllers\Graficos;
 
-
 use App\Http\Controllers\Controller;
 use App\Http\Responses\GraficoResponse;
 use App\Models\Inquilino\CorteRecibo;
@@ -20,7 +19,7 @@ class TipoViviendasController extends Controller
 
     public function getCorte(Request $request, GraficoResponse $graficoResponse)
     {
-        if ($request->has('corte_id')){
+        if ($request->has('corte_id')) {
             $corte = CorteRecibo::findOrFail($request->get('corte_id'));
             $montos = TipoVivienda::all();
             foreach ($montos as $tipo) {

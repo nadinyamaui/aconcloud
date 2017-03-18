@@ -61,8 +61,10 @@ class TipoViviendasController extends Controller
         $tipo = TipoVivienda::findOrNew($id);
         $tipo->fill($request->all());
         if ($tipo->save()) {
-            return redirect('admin-inquilino/tipo-viviendas')->with('mensaje',
-                'Se guardó el Tipo de vivienda correctamente');
+            return redirect('admin-inquilino/tipo-viviendas')->with(
+                'mensaje',
+                'Se guardó el Tipo de vivienda correctamente'
+            );
         }
 
         return redirect()->back()->withErrors($tipo->getErrors())->withInput();
@@ -74,5 +76,4 @@ class TipoViviendasController extends Controller
 
         return view('admin-inquilino.tipo-viviendas.form', $data);
     }
-
 }

@@ -34,5 +34,4 @@ class CreateJobsTable extends Migration
     {
         Schema::drop('jobs');
     }
-
 }

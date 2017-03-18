@@ -15,7 +15,7 @@ class VerificarCambioContrasena
      */
     public function handle($request, Closure $next)
     {
-        if(auth()->check() && auth()->user()->ind_cambiar_password && !$request->is('auth/nuevacontrasena') && !$request->is('terminos-condiciones')){
+        if (auth()->check() && auth()->user()->ind_cambiar_password && !$request->is('auth/nuevacontrasena') && !$request->is('terminos-condiciones')) {
             return redirect('auth/nuevacontrasena');
         }
         return $next($request);

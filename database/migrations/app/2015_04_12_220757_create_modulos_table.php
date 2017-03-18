@@ -32,5 +32,4 @@ class CreateModulosTable extends Migration
     {
         Schema::drop('modulos');
     }
-
 }

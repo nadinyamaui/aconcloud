@@ -32,12 +32,10 @@ class AsambleaEnVivo extends Job implements ShouldQueue
         $data['titulo'] = $asamblea->titulo;
 
         $usuarios = Inquilino::$current->usuarios;
-        foreach($usuarios as $usuario)
-        {
+        foreach ($usuarios as $usuario) {
             $data['destinatario'] = $usuario->nombre_completo;
 
             $usuario->enviarCorreo('asambleas::emails.asambleas.en_vivo', $data, "3, 2, 1... ¡Estamos en vivo!");
         }
     }
-
 }

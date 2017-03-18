@@ -31,5 +31,4 @@ class CreateCorteFondoTable extends Migration
     {
         Schema::drop('corte_fondo');
     }
-
 }

@@ -2,7 +2,6 @@
 
 namespace App\Modules\Mensajeria\Events;
 
-
 use App\Models\App\User;
 use App\Modules\Mensajeria\Mensaje;
 

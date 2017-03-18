@@ -33,5 +33,4 @@ class CreateInquilinoUserTable extends Migration
     {
         Schema::drop('inquilino_user');
     }
-
 }

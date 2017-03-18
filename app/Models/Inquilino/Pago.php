@@ -76,8 +76,10 @@ class Pago extends BaseModel
     public function buscarRecibos()
     {
         $ret = new Collection();
-        $recibos = Recibo::whereViviendaId($this->vivienda_id)->whereIn('estatus',
-            ['GEN', 'VEN'])->orderBy('id')->get();
+        $recibos = Recibo::whereViviendaId($this->vivienda_id)->whereIn(
+            'estatus',
+            ['GEN', 'VEN']
+        )->orderBy('id')->get();
 
         $montoDisponible = Helper::tf($this->monto_pagado) + $this->vivienda->saldo_a_favor;
         foreach ($recibos as $recibo) {
@@ -105,8 +107,10 @@ class Pago extends BaseModel
         $movimiento->monto_ingreso = $this->monto_pagado;
         $movimiento->referencia = $values['referencia'];
         $movimiento->tipo_movimiento = "NC";
-        $movimiento->comentarios = "Pago de recibos " . (implode(', ',
-                    $recibos->lists('num_recibo')->all()) . ' de la vivienda ') . $this->vivienda->nombre;
+        $movimiento->comentarios = "Pago de recibos " . (implode(
+            ', ',
+            $recibos->lists('num_recibo')->all()
+        ) . ' de la vivienda ') . $this->vivienda->nombre;
         $movimiento->fecha_factura = Carbon::now();
         $movimiento->numero_factura = "N/A";
         $movimiento->forma_pago = "banco";

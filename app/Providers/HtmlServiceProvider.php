@@ -58,5 +58,4 @@ class HtmlServiceProvider extends CollectiveHtmlServiceProvider
     {
         return ['html', 'form'];
     }
-
 }

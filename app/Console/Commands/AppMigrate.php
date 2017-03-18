@@ -37,7 +37,7 @@ class AppMigrate extends Command
 
         $inquilinos = Inquilino::all();
         $this->info("Migrando inquilinos");
-        foreach($inquilinos as $inquilino){
+        foreach ($inquilinos as $inquilino) {
             $this->info("Migrando inquilino: ".$inquilino->nombre);
             $inquilino->instalar();
         }

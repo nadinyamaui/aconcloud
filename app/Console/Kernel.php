@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Console;
 
@@ -53,5 +53,4 @@ class Kernel extends ConsoleKernel
         //Ejecutamos el comando que verifica que asambleas hay en el dia, se ejecuta todos los dias a las 8 am.
         $schedule->command('asambleas:enviar_notificacion_matutina')->dailyAt('08:00');
     }
-
 }

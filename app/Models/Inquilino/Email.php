@@ -59,5 +59,4 @@ class Email extends BaseModel
         $email->nombre_destinatario = $user->nombre_completo;
         $email->save();
     }
-
 }

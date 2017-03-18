@@ -22,5 +22,4 @@ class Junta extends Permisos
 
         return $this->denyAccess();
     }
-
 }

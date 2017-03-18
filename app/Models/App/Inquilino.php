@@ -1,6 +1,5 @@
 <?php namespace App\Models\App;
 
-
 use App\Exceptions\InquilinoNotFound;
 use App\Models\BaseModel;
 use App\Models\Inquilino\ClasificacionIngresoEgreso;
@@ -114,8 +113,10 @@ class Inquilino extends BaseModel
         DB::connection('inquilino')->commit();
         DB::connection('inquilino')->reconnect();
         DB::connection('inquilino')->beginTransaction();
-        Artisan::call('migrate',
-            ['--path' => 'database/migrations/inquilino', '--database' => 'inquilino', '--force' => 1]);
+        Artisan::call(
+            'migrate',
+            ['--path' => 'database/migrations/inquilino', '--database' => 'inquilino', '--force' => 1]
+        );
 
         //migrate modules
         $modulos = $this->modulos;
@@ -125,11 +126,11 @@ class Inquilino extends BaseModel
 
         $pathForStorage = storage_path('app/archivos/' . $this->id);
         $pathForPublicUploads = public_path('uploads/' . $this->id);
-        if(!File::exists($pathForStorage)){
+        if (!File::exists($pathForStorage)) {
             File::makeDirectory($pathForStorage);
             File::put($pathForStorage.DIRECTORY_SEPARATOR.'.gitignore', '*'.PHP_EOL.'!.gitignore');
         }
-        if(!File::exists($pathForPublicUploads)){
+        if (!File::exists($pathForPublicUploads)) {
             File::makeDirectory($pathForPublicUploads);
             File::put($pathForPublicUploads.DIRECTORY_SEPARATOR.'.gitignore', '*'.PHP_EOL.'!.gitignore');
         }
@@ -183,8 +184,10 @@ class Inquilino extends BaseModel
         }
         $tiposCorrecto = TipoVivienda::verificarConfiguracion();
         if (!$tiposCorrecto) {
-            $this->addError('ind_configurado',
-                'La configuración de tipo de viviendas no es correcta, vuelve al paso 2');
+            $this->addError(
+                'ind_configurado',
+                'La configuración de tipo de viviendas no es correcta, vuelve al paso 2'
+            );
         }
         if (!$this->hasErrors()) {
             $this->ind_configurado = true;

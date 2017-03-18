@@ -8,7 +8,6 @@
 
 namespace App\Helpers;
 
-
 use App\Models\Inquilino\Cuenta;
 use App\Models\Inquilino\MovimientosCuenta;
 use Carbon\Carbon;
@@ -58,7 +57,6 @@ class Conciliacion
                 */
 
                 $end = 1;
-
             } elseif (preg_match("#^!Type:(.*)$#", $line, $match)) {
                 /*
                 This will be matched for the first line.
@@ -100,7 +98,6 @@ class Conciliacion
                         $record['investment'] = trim(substr($line, 1));
                         break;
                 }
-
             }
 
             if ($end == 1) {
@@ -114,7 +111,6 @@ class Conciliacion
                 // Set $end to false so that we can now build the new record for the next transaction
                 $end = 0;
             }
-
         }
         $this->registros = $records;
         $this->cargarCollection();
@@ -147,8 +143,11 @@ class Conciliacion
             $movimiento->estatus = 'PEN';
             $movimiento->descripcion = $registro['payee'];
 
-            $movimientos = $this->cuenta->buscarMovimiento($registro['investment'], $movimiento->tipo_movimiento,
-                false);
+            $movimientos = $this->cuenta->buscarMovimiento(
+                $registro['investment'],
+                $movimiento->tipo_movimiento,
+                false
+            );
             foreach ($movimientos as $movimientoDb) {
                 if ($movimientoDb->estatus == "PEN") {
                     $this->collectionConciliar->push($movimiento);
@@ -174,8 +173,11 @@ class Conciliacion
     {
         $saldo = 0;
         foreach ($collection as $movimiento) {
-            $movimientos = $this->cuenta->buscarMovimiento($movimiento['referencia'], $movimiento['tipo_movimiento'],
-                false);
+            $movimientos = $this->cuenta->buscarMovimiento(
+                $movimiento['referencia'],
+                $movimiento['tipo_movimiento'],
+                false
+            );
             $movimientos->each(function ($movimientoDb) use ($movimiento) {
                 $movimientoDb->fecha_pago = $movimiento['fecha_pago'];
                 $movimientoDb->descripcion = $movimiento['descripcion'];

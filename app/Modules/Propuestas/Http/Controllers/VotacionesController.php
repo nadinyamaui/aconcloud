@@ -33,9 +33,8 @@ class VotacionesController extends Controller
     public function votar($propuesta_id)
     {
         $data['propuesta'] = Propuesta::findOrFail($propuesta_id);
-        if($data['propuesta']->estatus != "en_votacion"){
+        if ($data['propuesta']->estatus != "en_votacion") {
             return redirect('modulos/propuestas/propuestas/'.$propuesta_id)->with('error', 'No se puede votar por esta propuesta');
-
         }
         $data['viviendas'] = Vivienda::wherePropietarioId(auth()->id())->get();
         $data['usuario'] = auth()->user();
@@ -44,7 +43,7 @@ class VotacionesController extends Controller
             ->whereIndCerrado(false)
             ->first();
 
-        if (!is_object($data['voto'])){
+        if (!is_object($data['voto'])) {
             return redirect('modulos/propuestas/propuestas/'.$propuesta_id.'/votaciones')->with('mensaje', 'Ya votaste para esta propuesta, espera que el administrador cierre el proceso de votaci&oacute;n');
         }
         session()->set('voto_activo_id', $data['voto']->id);
@@ -66,4 +65,3 @@ class VotacionesController extends Controller
         return redirect('modulos/propuestas/propuestas/'.$propuesta_id.'/votaciones')->with('mensaje', 'Se ha registrado tu voto correctamente, gracias por ejercer tu derecho al voto');
     }
 }
-

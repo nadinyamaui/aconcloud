@@ -25,12 +25,11 @@ class EnviarEmail extends Job implements ShouldQueue
     {
         Inquilino::setActivo($this->inquilino->host);
         $email = Email::findOrFail($this->email_id);
-        $mailer->send([], [], function(Message $message) use ($email){
+        $mailer->send([], [], function (Message $message) use ($email) {
             $message->getSwiftMessage()->setBody($email->cuerpo, 'text/html');
             $message->subject($email->asunto);
             $message->to($email->destinatario, $email->nombre_destinatario);
             $email->enviado();
         });
     }
-
 }

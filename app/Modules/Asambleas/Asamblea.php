@@ -279,9 +279,8 @@ class Asamblea extends BaseModel
     {
         //Se le cambia el estatus a las propuestas seleccionadas
         $propuestas = $this->propuestas;
-        $propuestas->each(function(Propuesta $propuesta){
+        $propuestas->each(function (Propuesta $propuesta) {
             $propuesta->enDiscusion();
         });
     }
-
 }

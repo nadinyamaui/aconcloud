@@ -101,5 +101,4 @@ class FondosController extends Controller
 
         return view('admin-inquilino.fondos.form', $data);
     }
-
 }

@@ -34,5 +34,4 @@ class CreateAyudasTable extends Migration
     {
         Schema::drop('ayudas');
     }
-
 }

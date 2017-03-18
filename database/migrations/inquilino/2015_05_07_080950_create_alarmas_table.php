@@ -38,5 +38,4 @@ class CreateAlarmasTable extends Migration
     {
         Schema::drop('alarmas');
     }
-
 }

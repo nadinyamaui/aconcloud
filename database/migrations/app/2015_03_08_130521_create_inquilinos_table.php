@@ -35,5 +35,4 @@ class CreateInquilinosTable extends Migration
     {
         Schema::drop('inquilinos');
     }
-
 }

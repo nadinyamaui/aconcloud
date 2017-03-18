@@ -63,5 +63,4 @@ class ReciboVencido extends Job implements ShouldQueue
             SmsEnviado::encolar($mensaje, $usuario);
         }
     }
-
 }

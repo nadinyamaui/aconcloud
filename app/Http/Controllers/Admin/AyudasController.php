@@ -69,5 +69,4 @@ class AyudasController extends Controller
 
         return view('admin.ayudas.form', $data);
     }
-
 }

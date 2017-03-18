@@ -8,7 +8,6 @@
 
 namespace App\Http\Controllers\AdminInquilino;
 
-
 use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\GuardarPreferenciasRequest;
@@ -81,8 +80,10 @@ class ConfigurarController extends Controller
             return redirect('admin-inquilino/configurar/paso4');
         }
         if (!$request->has('solo_guardar')) {
-            return redirect('admin-inquilino/configurar/paso3')->with('error',
-                'El total de porcentajes debe sumar 100, verifica la configuración');
+            return redirect('admin-inquilino/configurar/paso3')->with(
+                'error',
+                'El total de porcentajes debe sumar 100, verifica la configuración'
+            );
         }
 
         return redirect('admin-inquilino/configurar/paso3')->with('mensaje', 'Se guardarón los cambios correctamente');

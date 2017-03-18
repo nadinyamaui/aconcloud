@@ -88,8 +88,8 @@ class Comentario extends BaseModel
         ];
     }
 
-   public function puedeEliminar()
-   {
-       return User::esJunta(true) || $this->autor_id == auth()->id();
-   }
+    public function puedeEliminar()
+    {
+        return User::esJunta(true) || $this->autor_id == auth()->id();
+    }
 }

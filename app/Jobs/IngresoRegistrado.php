@@ -53,5 +53,4 @@ class IngresoRegistrado extends Job implements ShouldQueue
             $usuario->enviarCorreo('emails.ingresos.created', $data, $asunto);
         }
     }
-
 }

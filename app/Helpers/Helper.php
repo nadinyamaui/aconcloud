@@ -13,7 +13,7 @@ class Helper
         $return = [];
         $start = (new Carbon())->setTime(8, 0);
         $stop = (new Carbon())->setTime(22, 0);
-        while ($start->lte($stop)){
+        while ($start->lte($stop)) {
             $return[$start->format('H:i:s')] = $start->format('H:i');
             $start->addMinutes(30);
         }

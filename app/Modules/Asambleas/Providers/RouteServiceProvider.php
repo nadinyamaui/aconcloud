@@ -38,13 +38,15 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function map(Router $router)
     {
-        $router->group(['namespace' => $this->namespace, 'prefix' => 'modulos/asambleas', 'middleware' => 'auth'],
+        $router->group(
+            ['namespace' => $this->namespace, 'prefix' => 'modulos/asambleas', 'middleware' => 'auth'],
             function ($router) {
                 $router->get('asambleas/{id}/comenzar', 'AsambleasController@comenzar');
                 $router->get('asambleas/{id}/terminada', 'AsambleasController@terminada');
                 $router->resource('asambleas', 'AsambleasController');
                 $router->post('asambleas/{asamblea_id}/asistentes/datatable', 'AsistentesController@datatable');
                 $router->post('asambleas/{asamblea_id}/asistentes/estatus', 'AsistentesController@estatus');
-            });
+            }
+        );
     }
 }

@@ -28,7 +28,7 @@ class AsambleaObserver extends BaseObserver
 
         //Se buscan los usuarios para llenar la table de asistencias
         $usuarios = Inquilino::$current->usuarios;
-        foreach($usuarios as $usuario){
+        foreach ($usuarios as $usuario) {
             $asistente = new Asistente();
             $asistente->user()->associate($usuario);
             $asistente->asamblea()->associate($asamblea);
@@ -38,12 +38,12 @@ class AsambleaObserver extends BaseObserver
 
     public function deleting(Asamblea $asamblea)
     {
-        if($asamblea->puedeEliminar()){
+        if ($asamblea->puedeEliminar()) {
             $asamblea->mensajesChat()->delete();
             $asamblea->asistentes()->delete();
 
             $propuestas = $asamblea->propuestas;
-            $propuestas->each(function(Propuesta $propuesta){
+            $propuestas->each(function (Propuesta $propuesta) {
                 $propuesta->estatus = "abierta";
                 $propuesta->asamblea_id = null;
                 $propuesta->save();

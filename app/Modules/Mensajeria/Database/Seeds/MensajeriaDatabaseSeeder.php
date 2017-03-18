@@ -17,5 +17,4 @@ class MensajeriaDatabaseSeeder extends Seeder
 
         // $this->call('App\Modules\Mensajeria\Database\Seeds\FoobarTableSeeder');
     }
-
 }

@@ -23,7 +23,6 @@ class WelcomeController extends Controller
      */
     public function __construct()
     {
-
     }
 
     /**
@@ -59,5 +58,4 @@ class WelcomeController extends Controller
         $user->save();
         return redirect('');
     }
-
 }

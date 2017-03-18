@@ -20,5 +20,4 @@ class DatabaseSeeder extends Seeder
         $this->call('BancosTableSeeder');
         $this->call('ModulosTableSeeder');
     }
-
 }

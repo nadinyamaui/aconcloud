@@ -31,5 +31,4 @@ class CreateTipoViviendasTable extends Migration
     {
         Schema::drop('tipo_viviendas');
     }
-
 }

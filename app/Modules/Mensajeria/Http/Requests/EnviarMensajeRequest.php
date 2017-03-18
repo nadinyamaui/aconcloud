@@ -30,5 +30,4 @@ class EnviarMensajeRequest extends Request
             'cuerpo_sms' => 'required_if:ind_sms,1',
         ];
     }
-
 }

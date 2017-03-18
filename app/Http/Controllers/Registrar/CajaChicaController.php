@@ -8,7 +8,6 @@
 
 namespace App\Http\Controllers\Registrar;
 
-
 use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ReponerCaja;
@@ -45,8 +44,10 @@ class CajaChicaController extends Controller
         $montoReponer = Helper::tf($request->get('monto_reponer'));
         $ret = $data['fondo']->reponer($request->get('referencia'), $request->get('cuenta_id'), $montoReponer);
         if ($ret === true) {
-            return redirect('consultas/gastos')->with("mensaje",
-                "Se registró la reposición de caja chica correctamente");
+            return redirect('consultas/gastos')->with(
+                "mensaje",
+                "Se registró la reposición de caja chica correctamente"
+            );
         }
 
         return redirect()->back()->withInput()->withErrors($ret->getErrors());

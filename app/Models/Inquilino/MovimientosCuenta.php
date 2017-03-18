@@ -275,10 +275,14 @@ class MovimientosCuenta extends BaseModel
                 $this->addError('forma_pago', 'No puedes cambiar la forma de pago ');
             }
             if ($this->fondo_id != "" && $this->cuenta_id != "") {
-                $this->addError("fondo_id",
-                    "Debes seleccionar un fondo o una cuenta pero no ambos. El fondo ya tiene una cuenta asociada");
-                $this->addError("cuenta_id",
-                    "Debes seleccionar un fondo o una cuenta pero no ambos. El fondo ya tiene una cuenta asociada");
+                $this->addError(
+                    "fondo_id",
+                    "Debes seleccionar un fondo o una cuenta pero no ambos. El fondo ya tiene una cuenta asociada"
+                );
+                $this->addError(
+                    "cuenta_id",
+                    "Debes seleccionar un fondo o una cuenta pero no ambos. El fondo ya tiene una cuenta asociada"
+                );
             }
             if ($this->forma_pago != "" && $this->isDirty('monto_egreso')) {
                 $fondo = $this->fondo;
@@ -306,12 +310,16 @@ class MovimientosCuenta extends BaseModel
                 }
                 if ($this->exists) {
                     if ($this->isDirty('cuenta_id') && !is_null($this->fondo_id)) {
-                        $this->addError(['cuenta_id', 'fondo_id'],
-                            'Para poder el cambiar el gasto a un fondo debe eliminarlo y volverlo a registrar');
+                        $this->addError(
+                            ['cuenta_id', 'fondo_id'],
+                            'Para poder el cambiar el gasto a un fondo debe eliminarlo y volverlo a registrar'
+                        );
                     }
                     if ($this->isDirty('fondo_id') && !is_null($this->cuenta_id)) {
-                        $this->addError(['cuenta_id', 'fondo_id'],
-                            'Para poder el cambiar el gasto a una cuenta debe eliminarlo y volverlo a registrar');
+                        $this->addError(
+                            ['cuenta_id', 'fondo_id'],
+                            'Para poder el cambiar el gasto a una cuenta debe eliminarlo y volverlo a registrar'
+                        );
                     }
                 }
             }
@@ -375,7 +383,6 @@ class MovimientosCuenta extends BaseModel
                 $this->clearErrors();
                 $this->exists = true;
                 $this->id = $gastoExistente->id;
-
             } else {
                 $this->save();
                 $this->registrarCuotas();
@@ -496,8 +503,10 @@ class MovimientosCuenta extends BaseModel
             $this->addError('tipo_movimiento', 'Los montos deben ser iguales para poder conciliarlos');
         }
         if ($this->buscarCuentaId() != $otro->buscarCuentaId()) {
-            $this->addError('tipo_movimiento',
-                'Los movimientos deben ser de la misma cuenta para cuenta poderlos conciliar');
+            $this->addError(
+                'tipo_movimiento',
+                'Los movimientos deben ser de la misma cuenta para cuenta poderlos conciliar'
+            );
         }
 
         return !$this->hasErrors();

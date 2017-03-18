@@ -34,5 +34,4 @@ class CreateFondosTable extends Migration
     {
         Schema::drop('fondos');
     }
-
 }

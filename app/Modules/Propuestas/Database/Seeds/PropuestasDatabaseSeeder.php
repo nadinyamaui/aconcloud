@@ -17,5 +17,4 @@ class PropuestasDatabaseSeeder extends Seeder
 
         // $this->call('App\Modules\Propuestas\Database\Seeds\FoobarTableSeeder');
     }
-
 }

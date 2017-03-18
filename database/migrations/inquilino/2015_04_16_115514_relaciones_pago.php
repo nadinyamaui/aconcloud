@@ -33,5 +33,4 @@ class RelacionesPago extends Migration
     {
         Schema::drop('relaciones_pago');
     }
-
 }

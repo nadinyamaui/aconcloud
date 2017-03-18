@@ -61,5 +61,4 @@ class CreateClasificacionIngresoEgresoTable extends Migration
     {
         Schema::drop('clasificacion_gastos');
     }
-
 }

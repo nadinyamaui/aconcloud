@@ -53,5 +53,4 @@ class GastoRegistrado extends Job implements ShouldQueue
             $usuario->enviarCorreo('emails.gastos.created', $data, $asunto);
         }
     }
-
 }

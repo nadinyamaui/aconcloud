@@ -34,9 +34,10 @@ class PeriodoJuntaUsersController extends Controller
             return response()->json(['mensaje' => 'Se eliminó el periodo de la junta de condominio correctamente']);
         }
 
-        return response()->json(['error' => 'No se puede eliminar el periodo de la junta de condominio , tiene registros asociados'],
-            400);
-
+        return response()->json(
+            ['error' => 'No se puede eliminar el periodo de la junta de condominio , tiene registros asociados'],
+            400
+        );
     }
 
     public function datatable($id, DatatableResponse $handler, Request $request)
@@ -65,5 +66,4 @@ class PeriodoJuntaUsersController extends Controller
 
         return view('admin-inquilino.periodo-junta.users', $data);
     }
-
 }

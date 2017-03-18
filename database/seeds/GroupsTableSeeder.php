@@ -22,5 +22,4 @@ class GroupsTableSeeder extends \Illuminate\Database\Seeder
         Grupo::create(['nombre' => 'Propietario', 'codigo' => 'propietario']);
         Grupo::create(['nombre' => 'Alquilado', 'codigo' => 'alquilado']);
     }
-
 }

@@ -38,9 +38,11 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function map(Router $router)
     {
-        $router->group(['namespace' => $this->namespace, 'prefix' => 'modulos/mensajeria', 'middleware' => 'auth'],
+        $router->group(
+            ['namespace' => $this->namespace, 'prefix' => 'modulos/mensajeria', 'middleware' => 'auth'],
             function ($router) {
                 require(config('modules.path') . '/Mensajeria/Http/routes.php');
-            });
+            }
+        );
     }
 }

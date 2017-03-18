@@ -43,11 +43,9 @@ class AsambleaTerminada extends Job implements ShouldQueue
 
         $data['propuestas'] = $asamblea->propuestas;
         $usuarios = Inquilino::$current->usuarios;
-        foreach($usuarios as $usuario)
-        {
+        foreach ($usuarios as $usuario) {
             $data['destinatario'] = $usuario->nombre_completo;
             $usuario->enviarCorreo('asambleas::emails.asambleas.terminada', $data, $data['asunto']);
         }
     }
-
 }

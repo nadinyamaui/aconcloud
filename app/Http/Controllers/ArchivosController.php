@@ -59,5 +59,4 @@ class ArchivosController extends Controller
 
         return view('archivos.form', $data);
     }
-
 }

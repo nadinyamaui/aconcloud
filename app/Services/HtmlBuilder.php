@@ -99,5 +99,4 @@ class HtmlBuilder extends BaseHtmlBuilder
 
         return View::make('templates.bootstrap.btnagregar', $data);
     }
-
 }

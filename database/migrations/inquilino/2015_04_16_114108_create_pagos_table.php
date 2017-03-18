@@ -33,5 +33,4 @@ class CreatePagosTable extends Migration
     {
         Schema::drop('pagos');
     }
-
 }

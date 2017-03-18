@@ -36,5 +36,4 @@ class CreateConfiguracionTable extends Migration
     {
         Schema::drop('configuracion');
     }
-
 }

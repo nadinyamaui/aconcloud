@@ -36,5 +36,4 @@ class Inquilino
 
         return $next($request);
     }
-
 }

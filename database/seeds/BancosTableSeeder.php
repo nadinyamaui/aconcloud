@@ -29,5 +29,4 @@ class BancosTableSeeder extends \Illuminate\Database\Seeder
             Banco::create(['nombre' => $banco]);
         }
     }
-
 }

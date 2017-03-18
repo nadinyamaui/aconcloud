@@ -29,5 +29,4 @@ class AddErrorToSmsEnviados extends Migration
             //
         });
     }
-
 }

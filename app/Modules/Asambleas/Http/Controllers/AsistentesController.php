@@ -30,9 +30,9 @@ class AsistentesController extends Controller
     {
         $asistente = Asistente::findOrFail($request->get('asistente_id'));
         $asistente->ind_asistio = $request->get('estatus');
-        if($asistente->ind_asistio){
+        if ($asistente->ind_asistio) {
             $asistente->hora_ingreso = Carbon::now()->format('H:i');
-        }else{
+        } else {
             $asistente->hora_ingreso = null;
         }
         $asistente->save();

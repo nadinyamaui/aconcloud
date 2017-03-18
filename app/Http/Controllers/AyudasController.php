@@ -24,5 +24,4 @@ class AyudasController extends Controller
 
         return view('ayudas.show', $data);
     }
-
 }

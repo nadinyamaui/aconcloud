@@ -36,5 +36,4 @@ class CreateSmsEnviadosTable extends Migration
     {
         Schema::drop('sms_enviados');
     }
-
 }

@@ -38,11 +38,9 @@ class PropuestaCreada extends Job implements ShouldQueue
         $data['asunto'] = "Nueva propuesta en aconcloud";
 
         $usuarios = Inquilino::$current->usuarios;
-        foreach($usuarios as $user)
-        {
+        foreach ($usuarios as $user) {
             $data['destinatario'] = $user->nombre_completo;
             $user->enviarCorreo('propuestas::emails.propuestas.creada', $data, $data['asunto']);
         }
     }
-
 }

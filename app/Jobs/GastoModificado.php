@@ -52,5 +52,4 @@ class GastoModificado extends Job implements ShouldQueue
             $usuario->enviarCorreo('emails.gastos.updated', $data, $asunto);
         }
     }
-
 }

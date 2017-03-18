@@ -82,8 +82,11 @@ class Recibo extends BaseModel
         $hoy = Carbon::now();
         $recibosVencidos = Recibo::
         join('corte_recibos', 'corte_recibos.id', '=', 'recibos.corte_recibo_id')
-            ->whereIn("recibos.estatus", ["GEN"])->where('fecha_vencimiento', '<=',
-                $hoy)->select('recibos.*')->distinct()->get();
+            ->whereIn("recibos.estatus", ["GEN"])->where(
+                'fecha_vencimiento',
+                '<=',
+                $hoy
+            )->select('recibos.*')->distinct()->get();
 
         foreach ($recibosVencidos as $recibo) {
             $recibo->vencido();
@@ -240,7 +243,7 @@ class Recibo extends BaseModel
     {
         $this->agregarDineroAlFondo();
         $this->estatus = "PAG";
-        if (!$pago_automatico){
+        if (!$pago_automatico) {
             $this->vivienda->saldo_actual -= $this->monto_total;
         }
         $this->push();

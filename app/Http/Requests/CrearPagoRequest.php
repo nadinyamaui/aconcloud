@@ -26,5 +26,4 @@ class CrearPagoRequest extends Request
             'referencia'   => 'required',
         ];
     }
-
 }

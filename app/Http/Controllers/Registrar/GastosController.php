@@ -47,8 +47,10 @@ class GastosController extends Controller
     {
         $gasto = MovimientosCuenta::findOrNew($id);
         if (!$gasto->puedeEditar()) {
-            return redirect('consultas/gastos')->with('error',
-                'No se puede editar este gasto, debido a que ya esta procesado');
+            return redirect('consultas/gastos')->with(
+                'error',
+                'No se puede editar este gasto, debido a que ya esta procesado'
+            );
         }
         $gasto->fill($request->all());
         if ($gasto->forma_pago == "efectivo") {
@@ -69,8 +71,10 @@ class GastosController extends Controller
     {
         $data['gasto'] = MovimientosCuenta::findOrNew($id);
         if (is_object($data['gasto']->movimientoPadre) || $data['gasto']->ind_movimiento_en_cuotas) {
-            return redirect('consultas/gastos')->with('error',
-                'No se pueden editar gastos que estan fraccionados en cuotas, debe eliminarlos y volverlos a crear');
+            return redirect('consultas/gastos')->with(
+                'error',
+                'No se pueden editar gastos que estan fraccionados en cuotas, debe eliminarlos y volverlos a crear'
+            );
         }
         if (is_object($data['gasto']->movimientoPadre)) {
             return redirect('registrar/gastos/' . $data['gasto']->movimiento_cuenta_cuota_id . '/edit');
@@ -80,15 +84,18 @@ class GastosController extends Controller
         }
         $data['clasificaciones'] = ClasificacionIngresoEgreso::getLista(true);
         if (!$data['gasto']->puedeEditar()) {
-            return redirect('consultas/gastos')->with('error',
-                'No se puede editar este gasto, debido a que ya esta procesado o esta bloqueado');
+            return redirect('consultas/gastos')->with(
+                'error',
+                'No se puede editar este gasto, debido a que ya esta procesado o esta bloqueado'
+            );
         }
         if ($data['gasto']->exists) {
-            $data['panelesAdicionales'] = event(new CargarPanelesAdicionales($data['gasto'],
-                ['archivos', 'comentarios']));
+            $data['panelesAdicionales'] = event(new CargarPanelesAdicionales(
+                $data['gasto'],
+                ['archivos', 'comentarios']
+            ));
         }
 
         return view('registrar.gastos.form', $data);
     }
-
 }

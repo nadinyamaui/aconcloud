@@ -30,5 +30,4 @@ class CreateViviendaUserTable extends Migration
     {
         Schema::drop('vivienda_user');
     }
-
 }
