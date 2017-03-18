@@ -1,6 +1,6 @@
 <?php
 
-return array(
+return [
     'dsn' => env('SENTRY_DSN'),
     'no_key_dsn'      => env('SENTRY_DSN_NO_KEY'),
-);
+];

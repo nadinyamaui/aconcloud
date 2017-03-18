@@ -1,20 +1,20 @@
 <?php
 
-return array(
-    'pdf' => array(
+return [
+    'pdf' => [
         'enabled' => true,
         'binary' => '"'.env('PDF_BINARY').'"',
         'timeout' => false,
-        'options' => array(
+        'options' => [
             'lowquality' => false,
-        ),
-    ),
-    'image' => array(
+        ],
+    ],
+    'image' => [
         'enabled' => true,
         'binary' => '"'.env('PDF_IMAGE_BINARY').'"',
         'timeout' => false,
-        'options' => array(
+        'options' => [
             'lowquality' => false,
-        ),
-    ),
-);
+        ],
+    ],
+];
