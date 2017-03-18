@@ -113,6 +113,7 @@ class MovimientosCuenta extends BaseModel
         'ind_movimiento_en_cuotas',
         'cuota_numero',
         'total_cuotas',
+        'porcentaje_cuotas',
         'monto_inicial'
     ];
 
@@ -125,20 +126,18 @@ class MovimientosCuenta extends BaseModel
 
     /**
      * Define una relación pertenece a Cuenta
-     * @return Cuenta
      */
     public function cuenta()
     {
-        return $this->belongsTo('App\Models\Inquilino\Cuenta');
+        return $this->belongsTo(Cuenta::class);
     }
 
     /**
      * Define una relación pertenece a Clasificacion
-     * @return Clasificacion
      */
     public function clasificacion()
     {
-        return $this->belongsTo('App\Models\Inquilino\ClasificacionIngresoEgreso');
+        return $this->belongsTo(ClasificacionIngresoEgreso::class);
     }
 
     /**
@@ -147,22 +146,22 @@ class MovimientosCuenta extends BaseModel
      */
     public function fondo()
     {
-        return $this->belongsTo('App\Models\Inquilino\Fondo');
+        return $this->belongsTo(Fondo::class);
     }
 
     public function movimientoPadre()
     {
-        return $this->belongsTo('App\Models\Inquilino\MovimientosCuenta', 'movimiento_cuenta_cuota_id');
+        return $this->belongsTo(MovimientosCuenta::class, 'movimiento_cuenta_cuota_id');
     }
 
     public function pago()
     {
-        return $this->hasOne('App\Models\Inquilino\Pago', 'movimiento_cuenta_id');
+        return $this->hasOne(Pago::class, 'movimiento_cuenta_id');
     }
 
     public function movimientoCuotas()
     {
-        return $this->hasMany('App\Models\Inquilino\MovimientosCuenta', 'movimiento_cuenta_cuota_id');
+        return $this->hasMany(MovimientosCuenta::class, 'movimiento_cuenta_cuota_id');
     }
 
     public function comentarios()
@@ -347,6 +346,7 @@ class MovimientosCuenta extends BaseModel
     public function actualizarCrear()
     {
         $this->calcularMontosCuotas();
+
         if ($this->forma_pago == "banco") {
             $cuenta = $this->cuenta;
             if (!is_object($cuenta)) {
@@ -391,7 +391,8 @@ class MovimientosCuenta extends BaseModel
         if ($this->ind_movimiento_en_cuotas) {
             $this->monto_inicial = $this->monto;
             $this->cuota_numero = 1;
-            $this->asignarMonto($this->monto / $this->total_cuotas);
+            $montoCuotas = $this->monto * ($this->porcentaje_cuotas / 100);
+            $this->asignarMonto($montoCuotas / $this->total_cuotas);
         }
     }
 
@@ -413,6 +414,8 @@ class MovimientosCuenta extends BaseModel
 
     private function registrarCuotas()
     {
+        $montoMovimientoBase = $this->monto_inicial;
+
         if ($this->total_cuotas >= 2) {
             for ($i = 2; $i <= $this->total_cuotas; $i++) {
                 $newGasto = new MovimientosCuenta($this->toArray());
@@ -425,6 +428,18 @@ class MovimientosCuenta extends BaseModel
                 if ($newGasto->hasErrors()) {
                     dd($newGasto->getErrors());
                 }
+            }
+
+            $montoMovimientoBase *= (100 - $this->porcentaje_cuotas)/100;
+
+            if ($this->porcentaje_cuotas != 100) {
+                /** @var MovimientosCuenta $movimientoBase */
+                $movimientoBase = $this->replicate();
+                $movimientoBase->fill($this->toArray());
+                $movimientoBase->movimiento_cuenta_cuota_id = $this->id;
+                $movimientoBase->fecha_factura = $this->fecha_factura;
+                $movimientoBase->asignarMonto($montoMovimientoBase);
+                $movimientoBase->save();
             }
         }
     }
@@ -534,6 +549,7 @@ class MovimientosCuenta extends BaseModel
         $reglas = [
             'forma_pago' => 'required',
             'total_cuotas' => 'required_if:ind_movimiento_en_cuotas,1|integer|max:12|min:2',
+            'porcentaje_cuotas'=>'required_if:ind_movimiento_en_cuotas,1|integer|max:100|min:1'
         ];
         if ($this->tipo_movimiento == "ND") {
             $reglas['monto_egreso'] = 'required';
@@ -582,6 +598,7 @@ class MovimientosCuenta extends BaseModel
             'ind_movimiento_en_cuotas' => '¿Separado en cuotas?',
             'cuota_numero' => 'Número de Cuota',
             'total_cuotas' => 'Total de Cuotas',
+            'porcentaje_cuotas' => 'Porcentaje en Cuotas',
             'monto_inicial' => 'Monto total del movimiento',
         ];
     }
