@@ -74,8 +74,9 @@ return [
     |
     */
 
-    'key'             => env('APP_KEY', 'SomeRandomStringWith32Characters'),
-    'cipher'          => MCRYPT_RIJNDAEL_128,
+    'key' => env('APP_KEY'),
+    'cipher' => 'AES-256-CBC',
+
     /*
     |--------------------------------------------------------------------------
     | Logging Configuration
