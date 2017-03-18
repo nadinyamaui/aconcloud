@@ -181,7 +181,7 @@ class Propuesta extends BaseModel
 
     public function estaAutorizado()
     {
-        return in_array(Auth::id(), $this->autorizados->lists('id')->all()) || !$this->exists || User::esAdmin();
+        return in_array(Auth::id(), $this->autorizados->pluck('id')->all()) || !$this->exists || User::esAdmin();
     }
 
     public function puedeVotar()

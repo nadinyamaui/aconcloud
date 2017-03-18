@@ -42,8 +42,8 @@ class RecordarVotoVecinos extends Job implements ShouldQueue
         $data['titulo'] = $propuesta->titulo;
 
         $votacionesPendientes = Votacion::wherePropuestaId($propuesta->id)->whereIndCerrado(false)->select('vivienda_id')->get();
-        $viviendas = Vivienda::findMany($votacionesPendientes->lists('vivienda_id')->all());
-        $users = User::findMany($viviendas->lists('propietario_id')->all());
+        $viviendas = Vivienda::findMany($votacionesPendientes->pluck('vivienda_id')->all());
+        $users = User::findMany($viviendas->pluck('propietario_id')->all());
         foreach ($users as $user) {
             $data['destinatario'] = $user->nombre_completo;
             $data['asunto'] = "Estamos esperando tu voto por la propuesta, ".$propuesta->titulo;

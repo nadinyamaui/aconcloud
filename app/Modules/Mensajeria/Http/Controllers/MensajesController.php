@@ -48,7 +48,7 @@ class MensajesController extends Controller
         $user = $auth->user();
         $data['mensaje'] = new Mensaje();
         $data['mensaje']->destinatarios = [User::findOrNew($request->get('destinatario_id'))];
-        $data['usuarios'] = Inquilino::$current->usuarios->lists('nombre_completo', 'id')->all();
+        $data['usuarios'] = Inquilino::$current->usuarios->pluck('nombre_completo', 'id')->all();
         $data['noLeidos'] = Mensaje::noLeidos($user->id);
 
         return view('mensajeria::mensajes.create', $data);

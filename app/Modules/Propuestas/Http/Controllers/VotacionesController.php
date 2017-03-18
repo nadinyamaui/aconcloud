@@ -38,7 +38,7 @@ class VotacionesController extends Controller
         }
         $data['viviendas'] = Vivienda::wherePropietarioId(auth()->id())->get();
         $data['usuario'] = auth()->user();
-        $data['voto'] = Votacion::whereIn('vivienda_id', $data['viviendas']->lists('id')->all())
+        $data['voto'] = Votacion::whereIn('vivienda_id', $data['viviendas']->pluck('id')->all())
             ->wherePropuestaId($propuesta_id)
             ->whereIndCerrado(false)
             ->first();

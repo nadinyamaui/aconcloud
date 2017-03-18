@@ -97,7 +97,7 @@ class AsambleasController extends Controller
     private function createEdit($id = 0)
     {
         $data['asamblea'] = Asamblea::findOrNew($id);
-        $data['usuarios'] = Inquilino::$current->usuarios->lists('nombre_completo', 'id')->all();
+        $data['usuarios'] = Inquilino::$current->usuarios->pluck('nombre_completo', 'id')->all();
         $data['timeSlots'] = Helper::generateTimeSlots();
         return view('asambleas::asambleas.form', $data);
     }

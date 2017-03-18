@@ -131,10 +131,10 @@ class ClasificacionIngresoEgreso extends BaseModel
             $alarma->link_handle = "registrar/ingresos/" . $movimiento->id . "/edit";
             $alarma->descripcion = "Registrar ingreso de " . $this->nombre;
         }
-        $grupos = Grupo::whereIn('codigo', ['junta', 'admin'])->get()->lists('id')->all();
+        $grupos = Grupo::whereIn('codigo', ['junta', 'admin'])->get()->pluck('id')->all();
         $usuarios = Inquilino::$current->inquilinoUsuarios()->whereIn('grupo_id', $grupos)->get();
         $alarma->save();
-        $alarma->users()->sync($usuarios->lists('user_id')->all());
+        $alarma->users()->sync($usuarios->pluck('user_id')->all());
         $alarma->notificar();
 
         if ($this->ind_egreso) {

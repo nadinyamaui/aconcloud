@@ -37,7 +37,7 @@ class PagosController extends Controller
         $data['vivienda'] = new Vivienda();
 
         if (!User::esJunta(true)) {
-            $data['viviendas'] = auth()->user()->viviendasPropietario->lists('nombre', 'id')->all();
+            $data['viviendas'] = auth()->user()->viviendasPropietario->pluck('nombre', 'id')->all();
         }
         return view('recibos.pagos.create', $data);
     }

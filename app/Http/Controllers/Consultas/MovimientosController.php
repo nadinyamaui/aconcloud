@@ -27,7 +27,7 @@ class MovimientosController extends Controller
         $cuenta = Cuenta::findOrFail($request->get('cuenta_id'));
         $query = MovimientosCuenta::where(function ($query) use ($cuenta) {
             $query->whereCuentaId($cuenta->id);
-            $query->orWhereIn('fondo_id', $cuenta->fondos->lists('id')->all());
+            $query->orWhereIn('fondo_id', $cuenta->fondos->pluck('id')->all());
         });
 
         return $handler->create($request, $query);

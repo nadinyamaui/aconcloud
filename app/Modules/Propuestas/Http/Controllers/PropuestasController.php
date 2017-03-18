@@ -91,7 +91,7 @@ class PropuestasController extends Controller
     {
         $data['propuesta'] = Propuesta::findOrNew($id);
 
-        $data['usuarios'] = Inquilino::$current->usuarios->where('codigo_grupo_activo', 'junta')->lists('nombre_completo', 'id')->all();
+        $data['usuarios'] = Inquilino::$current->usuarios->where('codigo_grupo_activo', 'junta')->pluck('nombre_completo', 'id')->all();
 
         $data['panelesAdicionales'] = event(new CargarPanelesAdicionales(
             $data['propuesta'],

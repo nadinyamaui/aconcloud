@@ -61,7 +61,7 @@ class PeriodoJuntaUsersController extends Controller
     {
         $data['periodo'] = PeriodoJunta::findOrNew($periodo_id);
         $data['user'] = PeriodoJuntaUser::findOrNew($id);
-        $data['usuarios'] = Inquilino::$current->usuarios->lists('nombre_completo', 'id')->all();
+        $data['usuarios'] = Inquilino::$current->usuarios->pluck('nombre_completo', 'id')->all();
         $data['usuarios'][''] = "Seleccione";
 
         return view('admin-inquilino.periodo-junta.users', $data);

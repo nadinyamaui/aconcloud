@@ -66,7 +66,7 @@ class Pago extends BaseModel
             return $movimiento;
         }
         if ($pago->save()) {
-            $pago->recibos()->sync($recibos->lists('id')->all());
+            $pago->recibos()->sync($recibos->pluck('id')->all());
             $pago->tratarDeProcesar();
         }
 
@@ -109,7 +109,7 @@ class Pago extends BaseModel
         $movimiento->tipo_movimiento = "NC";
         $movimiento->comentarios = "Pago de recibos " . (implode(
             ', ',
-            $recibos->lists('num_recibo')->all()
+            $recibos->pluck('num_recibo')->all()
         ) . ' de la vivienda ') . $this->vivienda->nombre;
         $movimiento->fecha_factura = Carbon::now();
         $movimiento->numero_factura = "N/A";

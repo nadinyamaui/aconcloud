@@ -165,7 +165,7 @@ class FormBuilder extends BaseFormBuilder
         $data['params']['id'] = $relation;
         $data['params']['style'] = 'width: 100%;';
         $data['attrName'] = $relation . '[]';
-        $data['values'] = $this->model->{$relation}->lists('id')->all();
+        $data['values'] = $this->model->{$relation}->pluck('id')->all();
         $data['numCols'] = $numCols;
         $data['params']['data-placeholder'] = $this->model->getDescription($relation);
 

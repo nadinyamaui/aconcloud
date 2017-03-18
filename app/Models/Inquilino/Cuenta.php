@@ -117,7 +117,7 @@ class Cuenta extends BaseModel
         $query = MovimientosCuenta::join('fondos', 'movimientos_cuenta.fondo_id', '=', 'fondos.id')
             ->where('fondos.cuenta_id', $this->id)->select(['movimientos_cuenta.id'])->get();
 
-        return MovimientosCuenta::whereIn('id', $query->lists('id')->all());
+        return MovimientosCuenta::whereIn('id', $query->pluck('id')->all());
     }
 
     public function scopeActivas($query)

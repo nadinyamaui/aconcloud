@@ -86,7 +86,7 @@ class ViviendasController extends Controller
     private function createEdit($id = 0, Request $request)
     {
         $data['vivienda'] = Vivienda::findOrNew($id);
-        $data['usuarios'] = Inquilino::$current->usuarios->lists('nombre_completo', 'id')->all();
+        $data['usuarios'] = Inquilino::$current->usuarios->pluck('nombre_completo', 'id')->all();
         $data['usuarios'][''] = 'Seleccione';
         if ($request->ajax()) {
             return view('admin-inquilino.viviendas.modal', $data);

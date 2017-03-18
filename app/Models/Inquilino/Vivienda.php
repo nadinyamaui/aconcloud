@@ -162,7 +162,7 @@ class Vivienda extends BaseModel
 
     public function listaUsuarios()
     {
-        $ids = $this->usuarios->lists('id')->all();
+        $ids = $this->usuarios->pluck('id')->all();
         $ids = array_unique(array_merge([$this->propietario_id], $ids));
 
         return User::findMany($ids);
