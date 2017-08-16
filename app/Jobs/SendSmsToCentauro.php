@@ -78,8 +78,8 @@ class SendSmsToCentauro extends Job implements ShouldQueue
             'nom' => ''
         ];
         return http_build_query([
-            'client_id' => '166599084061540',
-            'client_secret' => 'CqiPNAlvXKKBCcacbJTH',
+            'client_id' => '598495322609591',
+            'client_secret' => 'hbeRjXizfHhvItrgTkAg',
             'json' => base64_encode(urlencode(json_encode($json))),
             'msg' => base64_encode(urlencode($msg)),
             'client_opcion' => $option
