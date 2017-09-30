@@ -69,6 +69,5 @@ return [
     |
     */
 
-    'prefix'  => 'laravel',
-
+    'prefix'  => 'aconcloud',
 ];
